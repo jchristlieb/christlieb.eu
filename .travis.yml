@@ -5,12 +5,14 @@ php:
 
 before_script:
   - cp .env.example .env
+  - npm install
   - composer self-update
   - composer install --no-interaction
 
 script:
   - php artisan key:generate
   - vendor/bin/phpunit
+  - npm run test
 
 cache:
   directories:
