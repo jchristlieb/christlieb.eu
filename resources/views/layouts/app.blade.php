@@ -57,10 +57,16 @@
                 </div>
             </div>
         </nav>
+        <div class="container py-4">
+            <div class="row">
+                <main class="col-md-9">
+                    @yield('content')
 
-        <main class="container py-4">
-            @yield('content')
-        </main>
+                </main>
+                <aside class="col-md-3">
+                </aside>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
