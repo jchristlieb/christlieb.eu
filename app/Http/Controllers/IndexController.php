@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 /**
- * Class IndexController
- * @package App\Http\Controllers
+ * Class IndexController.
  */
 class IndexController extends Controller
 {
