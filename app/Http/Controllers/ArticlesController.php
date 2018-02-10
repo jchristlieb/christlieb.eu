@@ -27,23 +27,23 @@ class ArticlesController extends Controller
 
         return view('articles.show', compact('article'));
     }
-    
+
     public function store(Request $request)
     {
         $data = $request->validate([
            'title' => 'required',
            'content' => 'required',
         ]);
-        $article = new Article($request->only(['title','content']));
+        $article = new Article($request->only(['title', 'content']));
         $article->slug = str_slug($request->input('title'));
         $article->author()->associate(auth()->user());
         $article->save();
-    
+
         flash('Successfully created new Article')->success();
-        
+
         return redirect($article->path());
     }
-    
+
     /**
      * @param $id int
      * @return \Illuminate\Http\RedirectResponse
@@ -51,7 +51,7 @@ class ArticlesController extends Controller
     public function destroy($id)
     {
         Article::findOrFail($id)->delete();
-        
+
         flash('Successfully deleted Article')->success();
 
         return redirect()->back();

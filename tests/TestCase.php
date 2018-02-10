@@ -25,5 +25,4 @@ abstract class TestCase extends BaseTestCase
     {
         return $response->getOriginalContent()->getData();
     }
-    
 }

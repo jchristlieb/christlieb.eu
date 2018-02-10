@@ -8,43 +8,43 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class CreateArticlesTest extends TestCase
 {
     use RefreshDatabase;
-    
+
     /** @test */
     public function a_user_can_create_posts()
     {
         $this->signIn();
-        
+
         $this->post('/article/create', [
             'title' => 'Test Title',
-            'content' => 'Test Content'
+            'content' => 'Test Content',
         ]);
-        
+
         $this->assertEquals('success', session()->get('flash_notification')->first()->level);
     }
-    
+
     /** @test */
     public function the_title_is_required()
     {
         $this->signIn();
-        
+
         $response = $this->post('/article/create', [
             'title' => '',
-            'content' => 'Test Content'
+            'content' => 'Test Content',
         ]);
-        
+
         $response->assertSessionHasErrors('title');
     }
-    
+
     /** @test */
     public function the_content_is_required()
     {
         $this->signIn();
-        
+
         $response = $this->post('/article/create', [
             'title' => 'Test Title',
-            'content' => ''
+            'content' => '',
         ]);
-        
+
         $response->assertSessionHasErrors('content');
     }
 }
