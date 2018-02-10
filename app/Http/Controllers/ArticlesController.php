@@ -26,4 +26,15 @@ class ArticlesController extends Controller
 
         return view('articles.show', compact('article'));
     }
+    
+    /**
+     * @param $slug string
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($slug)
+    {
+        Article::where('slug', $slug)->delete();
+        
+        return redirect()->back();
+    }
 }

@@ -17,6 +17,7 @@ Route::get('/', 'IndexController');
 // Blog Routes
 Route::get('/blog', 'ArticlesController@index')->name('articles.index');
 Route::get('/blog/{slug}', 'ArticlesController@show')->name('articles.show');
+Route::delete('/blog/{slug}', 'ArticlesController@destroy')->name('articles.delete')->middleware('auth');
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
