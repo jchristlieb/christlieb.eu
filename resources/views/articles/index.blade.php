@@ -2,16 +2,17 @@
 
 @section('content')
 
-    @forelse($articles as $article)
-        <article class="card">
+    @foreach($articles as $article)
+        <article class="card mb-5">
             <div class="card-header">
-                <h3>{{$article->title}}</h3>
+                <h3><a href="{{$article->path()}}">{{$article->title}}</a></h3>
             </div>
             <div class="card-body">
                 {{$article->content}}
             </div>
         </article>
-    @empty
-<h2 class="text-center">There are no Articles!</h2>
-    @endforelse
+    @endforeach
+
+    {{$articles->links()}}
+
 @endsection

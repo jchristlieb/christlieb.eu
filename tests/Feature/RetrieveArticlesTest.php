@@ -16,7 +16,7 @@ class RetrieveArticlesTest extends TestCase
     {
         factory(Article::class, 20)->create();
 
-        $viewData = $this->getPassedData($this->get('/blog'));
+        $viewData = $this->getViewData($this->get('/blog'));
 
         $this->assertInstanceOf(LengthAwarePaginator::class, $viewData['articles']);
     }
@@ -26,7 +26,7 @@ class RetrieveArticlesTest extends TestCase
     {
         $article = factory(Article::class)->create(['slug' => 'foo-bar']);
 
-        $viewData = $this->getPassedData($this->get('/blog/foo-bar'));
+        $viewData = $this->getViewData($this->get('/blog/foo-bar'));
 
         $this->assertEquals($article->fresh(), $viewData['article']);
     }

@@ -21,7 +21,7 @@ abstract class TestCase extends BaseTestCase
         $this->actingAs($user);
     }
     
-    protected function getPassedData(TestResponse $response)
+    protected function getViewData(TestResponse $response)
     {
         return $response->getOriginalContent()->getData();
     }
