@@ -3,9 +3,9 @@
 namespace Tests\Feature;
 
 use App\Article;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class RetrieveArticlesTest extends TestCase
 {
@@ -14,7 +14,7 @@ class RetrieveArticlesTest extends TestCase
     /** @test */
     public function a_visitor_can_see_paginated_articles()
     {
-        factory(Article::class,20)->create();
+        factory(Article::class, 20)->create();
 
         $viewData = $this->getPassedData($this->get('/blog'));
 
