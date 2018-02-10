@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
 {
@@ -26,14 +27,32 @@ class ArticlesController extends Controller
 
         return view('articles.show', compact('article'));
     }
-
+    
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+           'title' => 'required',
+           'content' => 'required',
+        ]);
+        $article = new Article($request->only(['title','content']));
+        $article->slug = str_slug($request->input('title'));
+        $article->author()->associate(auth()->user());
+        $article->save();
+    
+        flash('Successfully created new Article')->success();
+        
+        return redirect($article->path());
+    }
+    
     /**
-     * @param $slug string
+     * @param $id int
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($slug)
+    public function destroy($id)
     {
-        Article::where('slug', $slug)->delete();
+        Article::findOrFail($id)->delete();
+        
+        flash('Successfully deleted Article')->success();
 
         return redirect()->back();
     }

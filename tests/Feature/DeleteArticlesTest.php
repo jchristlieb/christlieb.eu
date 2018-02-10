@@ -17,7 +17,7 @@ class DeleteArticlesTest extends TestCase
         $this->withoutExceptionHandling();
         $this->expectException(AuthenticationException::class);
 
-        $this->delete('/blog/article-slug');
+        $this->delete(route('articles.delete', 1));
     }
 
     /** @test */
@@ -29,7 +29,7 @@ class DeleteArticlesTest extends TestCase
 
         $this->assertEquals(1, Article::count());
 
-        $this->delete("/blog/{$post->slug}");
+        $this->delete(route('articles.delete', $post->id));
 
         $this->assertEquals(0, Article::count());
     }
