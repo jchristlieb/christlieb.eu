@@ -11,7 +11,12 @@
 |
 */
 
+// Front page
 Route::get('/', 'IndexController');
+
+// Blog Routes
+Route::get('/blog', 'ArticlesController@index')->name('articles.index');
+Route::get('/blog/{slug}', 'ArticlesController@show')->name('articles.show');
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
