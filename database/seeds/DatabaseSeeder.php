@@ -17,9 +17,8 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
         $this->command->info('User created');
-        
+
         factory(\App\Article::class, 20)->create();
         $this->command->info('Articles created');
-    
     }
 }
