@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\User;
-use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class LoginTest extends TestCase
@@ -16,12 +16,12 @@ class LoginTest extends TestCase
     {
         $user = factory(User::class)->create([
             'email' => 'john@example.com',
-            'password' => bcrypt('secret')
+            'password' => bcrypt('secret'),
         ]);
 
-        $response = $this->post('/login',[
+        $response = $this->post('/login', [
             'email' => 'john@example.com',
-            'password' => 'secret'
+            'password' => 'secret',
         ]);
 
         $response->assertRedirect('/');
