@@ -64,6 +64,7 @@
     </div>
 
     <!-- Scripts -->
+    @include('partials.google_analytics')
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
