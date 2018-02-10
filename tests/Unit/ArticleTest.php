@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Article;
 use App\User;
+use App\Article;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -20,12 +20,12 @@ class ArticleTest extends TestCase
 
         $this->assertEquals($article->fresh(), $viewData['article']);
     }
-    
+
     /** @test */
     public function it_has_an_author()
     {
         $article = factory(Article::class)->create();
-        
+
         $this->assertInstanceOf(User::class, $article->author);
     }
 }
