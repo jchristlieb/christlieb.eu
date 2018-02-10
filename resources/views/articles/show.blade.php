@@ -2,13 +2,17 @@
 
 @section('content')
 
-        <article class="card">
-            <div class="card-header">
-                <h3>{{$article->title}}</h3>
-            </div>
-            <div class="card-body">
-                {{$article->content}}
-            </div>
-        </article>
+    <article class="card">
+        <div class="card-header">
+            <h3>{{$article->title}}</h3>
+        </div>
+        <div class="card-body">
+            {{$article->content}}
+        </div>
+    </article>
 
+@endsection
+
+@section('sidebar')
+    @widget('LatestArticleWidget')
 @endsection

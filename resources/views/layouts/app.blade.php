@@ -61,9 +61,9 @@
             <div class="row">
                 <main class="col-md-9">
                     @yield('content')
-
                 </main>
                 <aside class="col-md-3">
+                    @yield('sidebar')
                 </aside>
             </div>
         </div>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f6cb056dc4c6746481c60a86bba1c10d",
+    "content-hash": "adf4d7dc458f3f14d6706195225af30e",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -364,6 +364,64 @@
                 "trusted proxy"
             ],
             "time": "2018-02-07T20:20:57+00:00"
+        },
+        {
+            "name": "imanghafoori/laravel-widgetize",
+            "version": "1.8.19",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/imanghafoori1/laravel-widgetize.git",
+                "reference": "8c3c09e41ce4c7f4be0297bca52e260439c6cab9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/imanghafoori1/laravel-widgetize/zipball/8c3c09e41ce4c7f4be0297bca52e260439c6cab9",
+                "reference": "8c3c09e41ce4c7f4be0297bca52e260439c6cab9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.9",
+                "orchestra/testbench": "~3.0"
+            },
+            "type": "project",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Imanghafoori\\Widgets\\WidgetsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Imanghafoori\\Widgets\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Iman Ghafoori",
+                    "email": "imanghafoori1@gmail.com"
+                }
+            ],
+            "description": "A minimal yet powerful package to give a better structure and caching opportunity for your laravel apps.",
+            "homepage": "https://github.com/imanghafoori1/laravel-widgetize",
+            "keywords": [
+                "laravel",
+                "laravel-cache",
+                "laravel5",
+                "laravel5-package",
+                "php"
+            ],
+            "time": "2018-01-21T17:26:18+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
