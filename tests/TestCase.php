@@ -3,8 +3,8 @@
 namespace Tests;
 
 use App\User;
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\TestResponse;
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -15,13 +15,14 @@ abstract class TestCase extends BaseTestCase
         $user = factory(User::class)->create([
             'name' => 'testuser',
             'email' => 'test@test.de',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
         ]);
         
         $this->actingAs($user);
     }
     
-    protected function getPassedData(TestResponse $response){
+    protected function getPassedData(TestResponse $response)
+    {
         return $response->getOriginalContent()->getData();
     }
 }

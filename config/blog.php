@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'google_analytics' => env('GOOGLE_ANALYTICS')
+    'google_analytics' => env('GOOGLE_ANALYTICS'),
 ];
