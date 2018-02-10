@@ -10,7 +10,7 @@ class Article extends Model
     {
         return "/blog/{$this->slug}";
     }
-    
+
     public function getRouteKeyName()
     {
         return 'slug';

@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
-    
+
     protected function signIn()
     {
         $user = factory(User::class)->create([
@@ -17,10 +17,10 @@ abstract class TestCase extends BaseTestCase
             'email' => 'test@test.de',
             'password' => bcrypt('password'),
         ]);
-        
+
         $this->actingAs($user);
     }
-    
+
     protected function getViewData(TestResponse $response)
     {
         return $response->getOriginalContent()->getData();
