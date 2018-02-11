@@ -6,8 +6,7 @@ use App\Article;
 use Illuminate\Http\Request;
 
 /**
- * Class ArticlesController
- * @package App\Http\Controllers
+ * Class ArticlesController.
  */
 class ArticlesController extends Controller
 {
@@ -31,7 +30,7 @@ class ArticlesController extends Controller
 
         return view('articles.show', compact('article'));
     }
-    
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -39,7 +38,7 @@ class ArticlesController extends Controller
     {
         return view('articles.create');
     }
-    
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
