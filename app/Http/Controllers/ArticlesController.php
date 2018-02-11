@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Article;
 use Illuminate\Http\Request;
 
+/**
+ * Class ArticlesController
+ * @package App\Http\Controllers
+ */
 class ArticlesController extends Controller
 {
     /**
@@ -27,7 +31,19 @@ class ArticlesController extends Controller
 
         return view('articles.show', compact('article'));
     }
-
+    
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function create()
+    {
+        return view('articles.create');
+    }
+    
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(Request $request)
     {
         $data = $request->validate([

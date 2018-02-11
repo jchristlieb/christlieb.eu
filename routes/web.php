@@ -17,8 +17,9 @@ Route::get('/', 'IndexController');
 // Blog Routes
 Route::get('/blog', 'ArticlesController@index')->name('articles.index');
 Route::get('/blog/{slug}', 'ArticlesController@show')->name('articles.show');
-Route::delete('/article/{id}', 'ArticlesController@destroy')->name('articles.delete')->middleware('auth');
-Route::post('/article/create', 'ArticlesController@store')->name('articles.store')->middleware('auth');
+Route::delete('/articles/{id}', 'ArticlesController@destroy')->name('articles.delete')->middleware('auth');
+Route::get('/articles/create', 'ArticlesController@create')->name('articles.create')->middleware('auth');
+Route::post('/articles/create', 'ArticlesController@store')->name('articles.store')->middleware('auth');
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

@@ -16,13 +16,13 @@ class ResetPasswordTest extends TestCase
     /** @test */
     public function the_password_reset_route_exists()
     {
-        $this->get('password/reset')->assertStatus(200);
+        $this->get(route('password.request'))->assertStatus(200);
     }
 
     /** @test */
     public function email_is_required_in_email_password_form()
     {
-        $response = $this->post('/password/reset', ['email' => '']);
+        $response = $this->post(route('password.request'), ['email' => '']);
         $response->assertSessionHasErrors('email');
     }
 
@@ -32,7 +32,7 @@ class ResetPasswordTest extends TestCase
         $user = factory(User::class)->create(['email' => 'john@example.com']);
         Notification::fake();
 
-        $this->post('password/email', ['email' => 'john@example.com']);
+        $this->post(route('password.email'), ['email' => 'john@example.com']);
 
         Notification::assertSentTo($user, ResetPassword::class);
     }

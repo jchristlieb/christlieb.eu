@@ -19,7 +19,7 @@ class LoginTest extends TestCase
             'password' => bcrypt('secret'),
         ]);
 
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email' => 'john@example.com',
             'password' => 'secret',
         ]);
@@ -31,7 +31,7 @@ class LoginTest extends TestCase
     /** @test */
     public function email_is_required()
     {
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email' => '',
             'password' => '12345',
         ]);
@@ -42,7 +42,7 @@ class LoginTest extends TestCase
     /** @test */
     public function password_is_required()
     {
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email' => 'john@example.com',
             'password' => '',
         ]);
@@ -57,7 +57,7 @@ class LoginTest extends TestCase
 
         $this->expectException(ValidationException::class);
 
-        $this->post('/login', [
+        $this->post(route('login'), [
             'email' => 'not-existend@user.com',
             'password' => '9s8gy8s9diguh4iev',
         ]);
@@ -69,7 +69,7 @@ class LoginTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user)
-            ->get('/logout')
+            ->get(route('logout'))
             ->assertRedirect('/');
 
         $this->assertFalse($this->isAuthenticated());

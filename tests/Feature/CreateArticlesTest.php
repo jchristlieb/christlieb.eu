@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Auth\AuthenticationException;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -10,11 +11,20 @@ class CreateArticlesTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    public function a_guest_cant_visit_create_articles_page()
+    {
+        $this->withoutExceptionHandling();
+        $this->expectException(AuthenticationException::class);
+        
+        $this->get(route('articles.create'));
+    }
+    
+    /** @test */
     public function a_user_can_create_posts()
     {
         $this->signIn();
 
-        $this->post('/article/create', [
+        $this->post(route('articles.store'), [
             'title' => 'Test Title',
             'content' => 'Test Content',
         ]);
@@ -27,7 +37,7 @@ class CreateArticlesTest extends TestCase
     {
         $this->signIn();
 
-        $response = $this->post('/article/create', [
+        $response = $this->post(route('articles.store'), [
             'title' => '',
             'content' => 'Test Content',
         ]);
@@ -40,7 +50,7 @@ class CreateArticlesTest extends TestCase
     {
         $this->signIn();
 
-        $response = $this->post('/article/create', [
+        $response = $this->post(route('articles.store'), [
             'title' => 'Test Title',
             'content' => '',
         ]);
