@@ -21,15 +21,15 @@ class ArticleTest extends TestCase
 
         $response->assertSee($article->title);
     }
-    
+
     /** @test */
     public function it_may_has_tags()
     {
         $article = factory(Article::class)->create();
-        $tags = factory(Tag::class,2)->make();
-        
+        $tags = factory(Tag::class, 2)->make();
+
         $article->tags()->saveMany($tags);
-        
+
         $this->assertEquals(2, $article->tags->count());
         $this->assertEquals($tags->first()->name, $article->tags->first()->name);
     }

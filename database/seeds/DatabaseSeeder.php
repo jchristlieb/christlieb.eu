@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
 
         factory(\App\Article::class, 20)->create();
         $this->command->info('Articles created');
-        
-        factory(\App\Tag::class,10)->create();
+
+        factory(\App\Tag::class, 10)->create();
         $this->command->info('Tags created');
     }
 }
