@@ -23,6 +23,7 @@ Route::post('/articles/create', 'ArticlesController@store')->name('articles.stor
 
 //Tag Routes
 Route::get('/tags', 'TagsController@index')->name('tags.index');
+Route::get('/tags/{slug}', 'TagsController@show')->name('tags.show');
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

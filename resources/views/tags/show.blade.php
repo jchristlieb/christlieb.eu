@@ -2,7 +2,9 @@
 
 @section('content')
 
-    @foreach($articles as $article)
+    <h1>{{$tag->name}}</h1>
+
+    @foreach($tag->articles as $article)
         <article class="card mb-5">
             <div class="card-header">
                 <h3><a href="{{$article->path()}}">{{$article->title}}</a></h3>
@@ -16,8 +18,6 @@
             </div>
         </article>
     @endforeach
-
-    {{$articles->links()}}
 
 @endsection
 
