@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Auth\AuthenticationException;
 use Tests\TestCase;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateArticlesTest extends TestCase
@@ -15,10 +15,10 @@ class CreateArticlesTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $this->expectException(AuthenticationException::class);
-        
+
         $this->get(route('articles.create'));
     }
-    
+
     /** @test */
     public function a_user_can_create_posts()
     {
