@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $articles->each(function ($article){
             $article->tags()->saveMany(factory(\App\Tag::class,rand(1,3))->create());
         });
+
         $this->command->info('Tags created');
     }
 }
