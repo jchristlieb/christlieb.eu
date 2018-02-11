@@ -21,6 +21,9 @@ Route::delete('/articles/{id}', 'ArticlesController@destroy')->name('articles.de
 Route::get('/articles/create', 'ArticlesController@create')->name('articles.create')->middleware('auth');
 Route::post('/articles/create', 'ArticlesController@store')->name('articles.store')->middleware('auth');
 
+//Tag Routes
+Route::get('/tags', 'TagsController@index')->name('tags.index');
+
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
