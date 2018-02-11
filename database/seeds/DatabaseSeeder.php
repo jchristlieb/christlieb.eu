@@ -20,9 +20,9 @@ class DatabaseSeeder extends Seeder
 
         $articles = factory(\App\Article::class, 20)->create(['user_id' => $user->id]);
         $this->command->info('Articles created');
-        
-        $articles->each(function ($article){
-            $article->tags()->saveMany(factory(\App\Tag::class,rand(1,3))->create());
+
+        $articles->each(function ($article) {
+            $article->tags()->saveMany(factory(\App\Tag::class, rand(1, 3))->create());
         });
 
         $this->command->info('Tags created');

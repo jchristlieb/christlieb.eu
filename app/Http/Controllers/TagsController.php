@@ -10,10 +10,11 @@ class TagsController extends Controller
     {
         return response()->json(Tag::all());
     }
-    
+
     public function show($slug)
     {
         $tag = Tag::where('slug', $slug)->with('articles')->first();
+
         return view('tags.show', compact('tag'));
     }
 }
