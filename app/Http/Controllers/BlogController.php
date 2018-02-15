@@ -29,5 +29,4 @@ class BlogController extends Controller
 
         return view('blog.single', compact('article'));
     }
-    
 }
