@@ -22,4 +22,3 @@ Route::post('/articles/create', 'ArticlesController@store')->name('admin.article
 
 // Tag Routes
 Route::get('/tags', 'TagsController@index')->name('admin.tags.index');
-

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Tag;
+use App\Http\Controllers\Controller;
 
 class TagsController extends Controller
 {
     public function index()
     {
-        return view('admin.tags.index',['tags' => Tag::paginate(15)]);
+        return view('admin.tags.index', ['tags' => Tag::paginate(15)]);
     }
 
     public function show($slug)
