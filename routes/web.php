@@ -15,11 +15,8 @@
 Route::get('/', 'IndexController');
 
 // Blog Routes
-Route::get('/blog', 'ArticlesController@index')->name('articles.index');
-Route::get('/blog/{slug}', 'ArticlesController@show')->name('articles.show');
-Route::delete('/articles/{id}', 'ArticlesController@destroy')->name('articles.delete')->middleware('auth');
-Route::get('/articles/create', 'ArticlesController@create')->name('articles.create')->middleware('auth');
-Route::post('/articles/create', 'ArticlesController@store')->name('articles.store')->middleware('auth');
+Route::get('/blog', 'BlogController@index')->name('blog');
+Route::get('/blog/{slug}', 'BlogController@single')->name('articles.show');
 
 //Tag Routes
 Route::get('/tags', 'TagsController@index')->name('tags.index');
@@ -35,3 +32,5 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+//Admin Routes

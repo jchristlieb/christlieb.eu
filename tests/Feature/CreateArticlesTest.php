@@ -16,7 +16,7 @@ class CreateArticlesTest extends TestCase
         $this->withoutExceptionHandling();
         $this->expectException(AuthenticationException::class);
 
-        $this->get(route('articles.create'));
+        $this->get(route('admin.articles.create'));
     }
 
     /** @test */
@@ -24,7 +24,7 @@ class CreateArticlesTest extends TestCase
     {
         $this->signIn();
 
-        $this->post(route('articles.store'), [
+        $this->post(route('admin.articles.store'), [
             'title' => 'Test Title',
             'content' => 'Test Content',
         ]);
@@ -37,7 +37,7 @@ class CreateArticlesTest extends TestCase
     {
         $this->signIn();
 
-        $response = $this->post(route('articles.store'), [
+        $response = $this->post(route('admin.articles.store'), [
             'title' => '',
             'content' => 'Test Content',
         ]);
@@ -50,7 +50,7 @@ class CreateArticlesTest extends TestCase
     {
         $this->signIn();
 
-        $response = $this->post(route('articles.store'), [
+        $response = $this->post(route('admin.articles.store'), [
             'title' => 'Test Title',
             'content' => '',
         ]);

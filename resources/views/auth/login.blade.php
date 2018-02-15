@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.no-sidebar')
 
 @section('content')
 <div class="container">

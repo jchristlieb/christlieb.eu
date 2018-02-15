@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -7,7 +7,7 @@
             <h3>New Article</h3>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{route('articles.store')}}">
+            <form method="POST" action="{{route('admin.articles.store')}}">
                 {{csrf_field()}}
 
                 <div class="form-group">
@@ -24,8 +24,4 @@
         </div>
     </div>
 
-@endsection
-
-@section('sidebar')
-    @widget('LatestArticleWidget')
 @endsection

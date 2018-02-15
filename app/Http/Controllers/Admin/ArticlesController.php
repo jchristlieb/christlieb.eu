@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Article;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 /**
@@ -17,7 +18,7 @@ class ArticlesController extends Controller
     {
         $articles = Article::paginate(10);
 
-        return view('articles.index', compact('articles'));
+        return view('admin.articles.index', compact('articles'));
     }
 
     /**
@@ -28,7 +29,7 @@ class ArticlesController extends Controller
     {
         $article = Article::where('slug', $slug)->first();
 
-        return view('articles.show', compact('article'));
+        return view('admin.articles.show', compact('article'));
     }
 
     /**
@@ -36,7 +37,7 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        return view('admin.articles.create');
     }
 
     /**

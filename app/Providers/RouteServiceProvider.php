@@ -15,6 +15,15 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $namespace = 'App\Http\Controllers';
+    
+    /**
+     * This namespace is applied to your admin controller routes.
+     *
+     * In addition, it is set as the URL generator's root namespace.
+     *
+     * @var string
+     */
+    protected $adminNamespace = 'App\Http\Controllers\Admin';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -39,9 +48,9 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        //
+        $this->mapAdminRoutes();
     }
-
+    
     /**
      * Define the "web" routes for the application.
      *
@@ -52,8 +61,23 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
+    }
+    
+    /**
+     * Define the "web" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapAdminRoutes()
+    {
+        Route::prefix('admin')
+            ->middleware(['web','auth'])
+            ->namespace($this->adminNamespace)
+            ->group(base_path('routes/admin.php'));
     }
 
     /**

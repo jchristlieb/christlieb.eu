@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>christlieb.eu Admin</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -19,18 +19,17 @@
     <div class="container py-4">
         @include('flash::message')
         <div class="row">
-            <main class="col-md-9">
-                @yield('content')
-            </main>
             <aside class="col-md-3">
                 @yield('sidebar')
             </aside>
+            <main class="col-md-9">
+                @yield('content')
+            </main>
         </div>
     </div>
 </div>
 
 <!-- Scripts -->
-@include('partials.google_analytics')
 <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

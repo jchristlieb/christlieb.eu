@@ -17,7 +17,7 @@ class DeleteArticlesTest extends TestCase
         $this->withoutExceptionHandling();
         $this->expectException(AuthenticationException::class);
 
-        $this->delete(route('articles.delete', 1));
+        $this->delete(route('admin.articles.delete', 1));
     }
 
     /** @test */
@@ -29,7 +29,7 @@ class DeleteArticlesTest extends TestCase
 
         $this->assertEquals(1, Article::count());
 
-        $this->delete(route('articles.delete', $post->id));
+        $this->delete(route('admin.articles.delete', $post->id));
 
         $this->assertEquals('success', session()->get('flash_notification')->first()->level);
         $this->assertEquals(0, Article::count());
