@@ -20,7 +20,17 @@
         @include('flash::message')
         <div class="row">
             <aside class="col-md-3">
-                @yield('sidebar')
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <i class="fal fa-newspaper fa-lg"></i> Blog
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('admin.articles.index')}}">Articles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('admin.tags.index')}}">Tags</a>
+                    </li>
+                </ul>
             </aside>
             <main class="col-md-9">
                 @yield('content')

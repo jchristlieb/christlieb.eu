@@ -5,8 +5,10 @@
 // Variables
 @import "variables";
 
-// Bootstrap
+// Vendors
 @import '~bootstrap/scss/bootstrap';
+@import "../fontawesome-5/scss/fontawesome";
+@import "../fontawesome-5/scss/fa-light";
 
 // Components
 @import "components/navbar";

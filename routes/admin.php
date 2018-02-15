@@ -14,9 +14,11 @@
 // Dashboard
 Route::get('/', 'DashboardController');
 
-// Blog Routes
+// Article Routes
+Route::get('/articles', 'ArticlesController@index')->name('admin.articles.index');
 Route::delete('/articles/{id}', 'ArticlesController@destroy')->name('admin.articles.delete');
 Route::get('/articles/create', 'ArticlesController@create')->name('admin.articles.create');
 Route::post('/articles/create', 'ArticlesController@store')->name('admin.articles.store');
 
-
+// Tag Routes
+Route::get('/tags', 'TagsController@index')->name('admin.tags.index');
