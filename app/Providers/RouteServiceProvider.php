@@ -15,7 +15,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $namespace = 'App\Http\Controllers';
-    
+
     /**
      * This namespace is applied to your admin controller routes.
      *
@@ -50,7 +50,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapAdminRoutes();
     }
-    
+
     /**
      * Define the "web" routes for the application.
      *
@@ -64,7 +64,7 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
     }
-    
+
     /**
      * Define the "web" routes for the application.
      *
@@ -75,7 +75,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapAdminRoutes()
     {
         Route::prefix('admin')
-            ->middleware(['web','auth'])
+            ->middleware(['web', 'auth'])
             ->namespace($this->adminNamespace)
             ->group(base_path('routes/admin.php'));
     }

@@ -18,5 +18,3 @@ Route::get('/', 'DashboardController');
 Route::delete('/articles/{id}', 'ArticlesController@destroy')->name('admin.articles.delete');
 Route::get('/articles/create', 'ArticlesController@create')->name('admin.articles.create');
 Route::post('/articles/create', 'ArticlesController@store')->name('admin.articles.store');
-
-
