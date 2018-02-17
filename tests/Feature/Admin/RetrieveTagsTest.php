@@ -3,8 +3,6 @@
 namespace Tests\Feature\Admin;
 
 use App\Tag;
-use App\Article;
-use function foo\func;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -20,9 +18,8 @@ class RetrieveTagsTest extends TestCase
 
         $response = $this->get(route('admin.tags.index'));
 
-        $tags->each(function ($tag) use ($response){
-           $response->assertSee($tag->name);
+        $tags->each(function ($tag) use ($response) {
+            $response->assertSee($tag->name);
         });
     }
-    
 }
