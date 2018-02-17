@@ -17,16 +17,16 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
         $this->command->info('User created');
-        
+
         $articles = factory(\App\Article::class, 20)->create(['user_id' => $user->id]);
         $this->command->info('Articles created');
-        
+
         $tags = collect();
-        
+
         collect(['javascript', 'php', 'laravel', 'vue'])->each(function ($tag) use ($tags) {
             $tags->push(factory(\App\Tag::class)->create(['name' => $tag]));
         });
-        
+
         // Create comments for each post
         $articles->each(function ($article) use ($tags) {
             $article->tags()->saveMany($tags->random(rand(1, 3)));

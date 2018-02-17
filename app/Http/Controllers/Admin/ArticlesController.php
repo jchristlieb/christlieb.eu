@@ -20,13 +20,14 @@ class ArticlesController extends Controller
 
         return view('admin.articles.index', compact('articles'));
     }
-    
+
     public function show($id)
     {
         $article = Article::with('tags')->find($id);
-        
+
         return view('admin.articles.show', compact('article'));
     }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
