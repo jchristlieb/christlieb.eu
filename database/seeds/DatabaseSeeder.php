@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
 
         // Create comments for each post
         $articles->each(function ($article) use ($tags) {
-            $article->tags()->saveMany($tags->random(rand(1, 3)));
+            $article->tags()->saveMany($tags->random(rand(1, 4)));
         });
         $this->command->info('Tags created');
     }

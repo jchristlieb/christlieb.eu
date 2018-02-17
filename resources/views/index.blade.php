@@ -7,4 +7,5 @@
 
 @section('sidebar')
     @widget('LatestArticleWidget')
+    @widget('TagsWidget')
 @endsection
