@@ -2,12 +2,10 @@
 
 namespace Tests\Unit\Widgets;
 
-use App\Article;
 use App\Tag;
-use App\Widgets\TagsWidget;
-use Carbon\Carbon;
+use App\Article;
 use Tests\TestCase;
-use App\Widgets\LatestArticleWidget;
+use App\Widgets\TagsWidget;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TagsWidgetTest extends TestCase
