@@ -15,7 +15,7 @@ class TagsController extends Controller
     {
         $tag = Tag::where('slug', $slug)->with('articles')->first();
         abort_unless($tag, 404);
-        
+
         return view('tags.show', compact('tag'));
     }
 }
