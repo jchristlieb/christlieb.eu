@@ -17,10 +17,9 @@ class RetrieveArticlesTest extends TestCase
         $articles = factory(Article::class, 5)->create();
 
         $response = $this->get(route('admin.articles.index'));
-    
+
         $articles->each(function ($article) use ($response) {
             $response->assertSee($article->title);
         });
     }
-    
 }
