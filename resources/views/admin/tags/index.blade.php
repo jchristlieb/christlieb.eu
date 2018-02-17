@@ -16,7 +16,7 @@
             <tbody>
             @foreach($tags as $tag)
                 <tr>
-                    <td>{{$tag->name}}</td>
+                    <td><a href="{{route('admin.tags.show', $tag->id)}}">{{$tag->name}}</a></td>
                     <td width="100px">...</td>
                 </tr>
             @endforeach

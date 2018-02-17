@@ -25,4 +25,14 @@ class RetrieveTagsTest extends TestCase
         });
     }
     
+    /** @test */
+    public function single_tag_can_be_shown()
+    {
+        $this->signIn();
+        $tag = factory(Tag::class)->create();
+    
+        $response = $this->get(route('admin.tags.show', $tag->id));
+        
+        $response->assertSee($tag->name);
+    }
 }
