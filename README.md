@@ -1,4 +1,5 @@
 # christlieb.eu
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![StyleCI](https://styleci.io/repos/120960044/shield?branch=master)](https://styleci.io/repos/120960044)
 [![Build Status](https://travis-ci.org/bambamboole/christlieb.eu.svg?branch=master)](https://travis-ci.org/bambamboole/christlieb.eu)  
 This repository contains the source of my personal blog which you can find [here](https://christlieb.eu).  
