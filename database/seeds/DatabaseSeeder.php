@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         collect(['javascript', 'php', 'laravel', 'vue'])->each(function ($tag) use ($tags) {
             $tags->push(factory(\App\Tag::class)->create([
                 'name' => $tag,
-                'slug' => $tag
+                'slug' => $tag,
             ]));
         });
 
