@@ -1,5 +1,7 @@
 @extends('layouts.no-sidebar')
 
+@section('title',  'Reset Password')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

@@ -24,7 +24,10 @@ class DatabaseSeeder extends Seeder
         $tags = collect();
 
         collect(['javascript', 'php', 'laravel', 'vue'])->each(function ($tag) use ($tags) {
-            $tags->push(factory(\App\Tag::class)->create(['name' => $tag]));
+            $tags->push(factory(\App\Tag::class)->create([
+                'name' => $tag,
+                'slug' => $tag
+            ]));
         });
 
         // Create comments for each post

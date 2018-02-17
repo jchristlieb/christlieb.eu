@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title',  'Tag: ' . $tag->name )
+
 @section('content')
 
     <h1>Tag: {{$tag->name}}</h1>
@@ -19,7 +21,8 @@
                 {{($article->getExcerpt())}}
             </div>
             <div class="card-footer">
-                <form method="POST" class="float-right" action="{{route('admin.tags.article.delete', [$tag->id, $article->id])}}">
+                <form method="POST" class="float-right"
+                      action="{{route('admin.tags.article.delete', [$tag->id, $article->id])}}">
                     {{method_field('delete')}}
                     {{csrf_field()}}
                     <button type="submit" class="btn btn-primary">Remove from Tag</button>

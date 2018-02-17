@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title',  'New Article')
+
 @section('content')
 
     <div class="card">
