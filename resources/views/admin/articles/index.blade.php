@@ -18,7 +18,7 @@
                 @foreach($articles as $article)
                     <tr>
                         <td>{{$article->created_at}}</td>
-                        <td>{{$article->title}}</td>
+                        <td><a href="{{route('admin.articles.show', $article->id)}}">{{$article->title}}</a> </td>
                         <td>...</td>
                     </tr>
                 @endforeach

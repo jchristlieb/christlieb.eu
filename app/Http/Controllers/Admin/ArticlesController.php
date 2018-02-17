@@ -20,18 +20,13 @@ class ArticlesController extends Controller
 
         return view('admin.articles.index', compact('articles'));
     }
-
-    /**
-     * @param $slug
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function show($slug)
+    
+    public function show($id)
     {
-        $article = Article::where('slug', $slug)->first();
-
+        $article = Article::with('tags')->find($id);
+        
         return view('admin.articles.show', compact('article'));
     }
-
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

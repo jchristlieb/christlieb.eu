@@ -28,18 +28,29 @@ class UpdateTagsTest extends TestCase
         $this->assertEquals(1, $tag->fresh()->articles->count());
 
         $this->delete(route('admin.tags.article.delete', [$tag->id, $article->id]));
-
+    
+        $this->assertEquals('success', session()->get('flash_notification')->first()->level);
         $this->assertEquals(0, $tag->fresh()->articles->count());
     }
-
+    
     /** @test */
     public function the_name_can_be_updated()
     {
-        $this->withoutExceptionHandling();
         $tag = factory(Tag::class)->create();
-
+        
         $this->patch("/admin/tags/{$tag->id}", ['name' => 'updated name']);
-
+        
         $this->assertEquals('updated name', $tag->fresh()->name);
+    }
+    
+    /** @test */
+    public function the_name_must_be_unique()
+    {
+        factory(Tag::class)->create(['name' => 'test']);
+        $secondTag = factory(Tag::class)->create();
+        
+        $response = $this->patch("/admin/tags/{$secondTag->id}", ['name' => 'test']);
+        
+        $response->assertSessionHasErrors('name');
     }
 }

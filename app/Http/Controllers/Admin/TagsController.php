@@ -4,26 +4,33 @@ namespace App\Http\Controllers\Admin;
 
 use App\Tag;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
 
 class TagsController extends Controller
 {
     public function index()
     {
-        return view('admin.tags.index', ['tags' => Tag::paginate(15)]);
+        $tags = Tag::withCount('articles')->paginate(10);
+
+        return view('admin.tags.index', compact('tags'));
     }
 
     public function show($id)
     {
-        $tag = Tag::find($id)->with('articles')->first();
-
+        $tag = Tag::with('articles')->find($id);
+        
         return view('admin.tags.show', compact('tag'));
     }
 
     public function update($id)
     {
         $tag = Tag::findOrFail($id);
-        $tag->update(['name' => request()->input('name')]);
-
+        $tag->update(request()->validate([
+            'name' => ['required', Rule::unique('tags')->ignore($tag->id)],
+        ]));
+    
+        flash('Successfully updated Tag')->success();
+    
         return view('admin.tags.show', compact('tag'));
     }
 
@@ -31,8 +38,10 @@ class TagsController extends Controller
     {
         /** @var $tag Tag */
         $tag = Tag::findOrFail($tagId);
-        $tag->articles()->detach();
-
+        $tag->articles()->detach($articleId);
+    
+        flash('Successfully removed Article from Tag')->success();
+    
         return redirect()->back();
     }
 }

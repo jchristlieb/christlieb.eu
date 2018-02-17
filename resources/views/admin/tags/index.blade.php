@@ -10,14 +10,16 @@
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Actions</th>
+                <th width="150px">Article Count</th>
+                <th width="100px">Actions</th>
             </tr>
             </thead>
             <tbody>
             @foreach($tags as $tag)
                 <tr>
                     <td><a href="{{route('admin.tags.show', $tag->id)}}">{{$tag->name}}</a></td>
-                    <td width="100px">...</td>
+                    <td>{{$tag->articles_count}}</td>
+                    <td>...</td>
                 </tr>
             @endforeach
             </tbody>
