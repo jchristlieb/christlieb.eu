@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h1>Tag: {{$tag->name}}</h1>
+    <update-tag data-tag="{{$tag->toJson()}}" url="{{route('admin.tags.update', $tag->id)}}"></update-tag>
 
     @foreach($tag->articles as $article)
         <article class="card mb-5">

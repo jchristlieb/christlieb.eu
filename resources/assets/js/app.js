@@ -63,6 +63,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('tags-widget', require('./components/TagsWidget.vue'));
+Vue.component('update-tag', require('./components/UpdateTagComponent.vue'));
 
 const app = new Vue({
     el: '#app'

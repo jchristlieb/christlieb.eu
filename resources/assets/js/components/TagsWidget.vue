@@ -29,7 +29,6 @@
             getFontSize(tag) {
                 let size = tag.articles_count === this.minCount ? this.fontMin
                     : (tag.articles_count / this.maxCount) * (this.fontMax - this.fontMin) + this.fontMin;
-                console.log(size);
                 return size + 'px';
             }
         }

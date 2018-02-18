@@ -30,9 +30,14 @@ class TagsController extends Controller
         ]));
 
         flash('Successfully updated Tag')->success();
+        
+        if(request()->wantsJson()){
+            return response()->json($tag);
+        }
 
         return view('admin.tags.show', compact('tag'));
     }
+    
 
     public function deleteArticleRelation($tagId, $articleId)
     {

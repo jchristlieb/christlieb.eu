@@ -23,7 +23,6 @@ class DeleteArticlesTest extends TestCase
     /** @test */
     public function a_user_can_delete_articles()
     {
-        $this->withoutExceptionHandling();
         $this->signIn();
         $post = factory(Article::class)->create();
 
