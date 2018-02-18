@@ -15,14 +15,20 @@
 </head>
 <body>
 <div id="app">
+    <flash></flash>
     @include('partials.navbar')
     <div class="container py-4">
-        @include('flash::message')
         <div class="row">
             <aside class="col-md-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <i class="fal fa-newspaper fa-lg"></i> Blog
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('admin.dashboard')}}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('admin.articles.create')}}">New Article</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('admin.articles.index')}}">Articles</a>
@@ -41,5 +47,6 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+@include('flash::message')
 </body>
 </html>

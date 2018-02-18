@@ -14,6 +14,7 @@
 </head>
 <body>
 <div id="app">
+    <flash></flash>
     @include('partials.navbar')
     <div class="container py-4">
         @include('flash::message')
@@ -28,5 +29,6 @@
 <!-- Scripts -->
 @include('partials.google_analytics')
 <script src="{{ asset('js/app.js') }}"></script>
+@include('flash::message')
 </body>
 </html>

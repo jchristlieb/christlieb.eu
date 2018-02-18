@@ -12,13 +12,13 @@
 */
 
 // Dashboard
-Route::get('/', 'DashboardController');
+Route::get('/', 'DashboardController')->name('admin.dashboard');
 
 // Article Routes
 Route::get('/articles', 'ArticlesController@index')->name('admin.articles.index');
+Route::get('/articles/create', 'ArticlesController@create')->name('admin.articles.create');
 Route::get('/articles/{id}', 'ArticlesController@show')->name('admin.articles.show');
 Route::delete('/articles/{id}', 'ArticlesController@destroy')->name('admin.articles.delete');
-Route::get('/articles/create', 'ArticlesController@create')->name('admin.articles.create');
 Route::post('/articles/create', 'ArticlesController@store')->name('admin.articles.store');
 
 // Tag Routes

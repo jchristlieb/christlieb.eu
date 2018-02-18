@@ -37,10 +37,12 @@
                     this.tag = response.data;
                     this.errors = false;
                     this.edit = false;
+                    flash('Tag updated', 'success');
                 });
 
                 response.catch(error => {
                     this.errors = error.response.data.errors;
+                    flash('Error while updating Tag', 'warning');
                 })
             },
             patch(url, tag) {
