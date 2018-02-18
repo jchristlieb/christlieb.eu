@@ -16,16 +16,16 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     protected $guarded = [];
-    
+
     protected static function boot()
     {
         parent::boot();
-        
+
         self::deleting(function ($article) {
             $article->tags()->detach();
         });
     }
-    
+
     public function path()
     {
         return "/blog/{$this->slug}";

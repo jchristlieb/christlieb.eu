@@ -14,12 +14,12 @@ class Tag extends Model
     protected static function boot()
     {
         parent::boot();
-    
+
         self::deleting(function ($tag) {
             $tag->articles()->detach();
         });
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
