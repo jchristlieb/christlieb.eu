@@ -11,6 +11,15 @@ class Tag extends Model
 {
     protected $guarded = [];
 
+    protected static function boot()
+    {
+        parent::boot();
+    
+        self::deleting(function ($tag) {
+            $tag->articles()->detach();
+        });
+    }
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

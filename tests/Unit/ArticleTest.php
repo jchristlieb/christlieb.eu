@@ -41,4 +41,24 @@ class ArticleTest extends TestCase
 
         $this->assertInstanceOf(User::class, $article->author);
     }
+    
+    /** @test */
+    public function it_cascades_on_delete()
+    {
+        $article = factory(Article::class)->create();
+        $tag = factory(Tag::class)->create();
+        $article->tags()->save($tag);
+        
+        $this->assertDatabaseHas('article_tag', [
+            'article_id' => $article->id,
+            'tag_id' => $tag->id,
+        ]);
+        
+        $article->delete();
+        
+        $this->assertDatabaseMissing('article_tag', [
+            'article_id' => $article->id,
+            'tag_id' => $tag->id,
+        ]);
+    }
 }
