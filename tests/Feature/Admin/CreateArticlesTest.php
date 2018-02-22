@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Admin;
 
+use App\Article;
 use Tests\TestCase;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -22,13 +23,15 @@ class CreateArticlesTest extends TestCase
     /** @test */
     public function a_user_can_create_posts()
     {
+        $this->withoutExceptionHandling();
         $this->signIn();
 
         $this->post(route('admin.articles.store'), [
             'title' => 'Test Title',
             'content' => 'Test Content',
         ]);
-
+        
+        $this->assertCount(1, Article::all());
         $this->assertEquals('success', session()->get('flash_notification')->first()->level);
     }
 
@@ -42,6 +45,20 @@ class CreateArticlesTest extends TestCase
             'content' => 'Test Content',
         ]);
 
+        $response->assertSessionHasErrors('title');
+    }
+    
+    /** @test */
+    public function the_title_must_be_unique()
+    {
+        $this->signIn();
+        factory(Article::class)->create(['title' => 'test title']);
+        
+        $response = $this->post("/admin/articles/create", [
+            'title' => 'test title',
+            'content' => 'test content'
+        ]);
+        
         $response->assertSessionHasErrors('title');
     }
 

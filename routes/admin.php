@@ -17,7 +17,9 @@ Route::get('/', 'DashboardController')->name('admin.dashboard');
 // Article Routes
 Route::get('/articles', 'ArticlesController@index')->name('admin.articles.index');
 Route::get('/articles/create', 'ArticlesController@create')->name('admin.articles.create');
+Route::get('/articles/edit/{id}', 'ArticlesController@edit')->name('admin.articles.edit');
 Route::get('/articles/{id}', 'ArticlesController@show')->name('admin.articles.show');
+Route::patch('/articles/{id}', 'ArticlesController@update')->name('admin.articles.update');
 Route::delete('/articles/{id}', 'ArticlesController@destroy')->name('admin.articles.delete');
 Route::post('/articles/create', 'ArticlesController@store')->name('admin.articles.store');
 

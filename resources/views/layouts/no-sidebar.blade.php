@@ -27,7 +27,7 @@
 </div>
 
 <!-- Scripts -->
-@include('partials.google_analytics')
+@include('partials.google-analytics')
 <script src="{{ asset('js/app.js') }}"></script>
 @include('flash::message')
 </body>

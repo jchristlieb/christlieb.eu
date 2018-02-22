@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Article;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
 
 /**
  * Class ArticlesController.
@@ -43,10 +44,10 @@ class ArticlesController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-           'title' => 'required',
-           'content' => 'required',
+            'title' => ['required', Rule::unique('articles')],
+            'content' => ['required']
         ]);
-        $article = new Article($request->only(['title', 'content']));
+        $article = new Article($data);
         $article->slug = str_slug($request->input('title'));
         $article->author()->associate(auth()->user());
         $article->save();
@@ -54,6 +55,32 @@ class ArticlesController extends Controller
         flash('Successfully created new Article')->success();
 
         return redirect($article->path());
+    }
+    
+    public function edit($id)
+    {
+        $article = Article::findOrFail($id);
+        
+        return view('admin.articles.edit', compact('article'));
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function update(Request $request, $id)
+    {
+        $article = Article::findOrFail($id);
+        $article->update($request->validate([
+            'title' => ['required', Rule::unique('articles')->ignore($article->id)],
+            'content' => ['required']
+        ]));
+    
+        flash('Successfully updated Article')->success();
+        
+        return redirect(route('admin.articles.show', $article->id));
     }
 
     /**
