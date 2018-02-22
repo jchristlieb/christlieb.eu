@@ -17,7 +17,6 @@ class Article extends Model
 {
     protected $guarded = [];
 
-
     public function path()
     {
         return "/blog/{$this->slug}";

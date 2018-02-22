@@ -3,21 +3,19 @@
 namespace Tests;
 
 use App\User;
-use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
-    
-    
+
     protected function setUp()
     {
         parent::setUp();
-        
+
         $this->enableForeignKeys();
     }
-    
+
     /**
      * Enables foreign keys.
      *
@@ -28,9 +26,9 @@ abstract class TestCase extends BaseTestCase
         $db = app()->make('db');
         $db->getSchemaBuilder()->enableForeignKeyConstraints();
     }
-    
+
     /**
-     * Creates a user and triggers actingAs
+     * Creates a user and triggers actingAs.
      */
     protected function signIn()
     {
