@@ -79,6 +79,8 @@ window.flash = function(message, type) {
 Vue.component('flash', require('vue-flash'));
 Vue.component('tags-widget', require('./components/TagsWidget.vue'));
 Vue.component('update-tag', require('./components/UpdateTagComponent.vue'));
+Vue.component('new-article-form', require('./components/NewArticleForm.vue'));
+Vue.component('tags-input', require('./components/TagsInput.vue'));
 
 const app = new Vue({
     el: '#app'

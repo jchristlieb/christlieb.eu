@@ -1,0 +1,26 @@
+.tags-input{
+    padding: .25rem;
+    border-radius: .25rem;
+    display:flex;
+    border: 1px solid $gray-400;
+    align-items: center;
+    .badge{
+        display: inline-flex;
+        margin-right: .5rem;
+        span{
+            padding: .25rem;
+        }
+        a{
+            padding: 0 .25rem;
+            color: #fff;
+            &:hover{
+                text-decoration: none;
+            }
+        }
+    }
+    input{
+        flex: 1;
+        border: none;
+        outline: none !important;
+    }
+}

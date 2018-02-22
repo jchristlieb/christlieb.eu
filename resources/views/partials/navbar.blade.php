@@ -17,6 +17,7 @@
 
             <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
+                    <li><a class="nav-link" href="{{route('admin.dashboard')}}"><i class="fal fa-cogs"></i></a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">

@@ -52,6 +52,10 @@ class ArticlesController extends Controller
         $article->author()->associate(auth()->user());
         $article->save();
 
+        if($request->wantsJson()){
+            return response()->json($article);
+        }
+        
         flash('Successfully created new Article')->success();
 
         return redirect($article->path());
