@@ -16,9 +16,9 @@ class RetrieveArticlesTest extends TestCase
     {
         factory(Article::class, 20)->create();
 
-        $viewData = $this->getViewData($this->get(route('blog')));
-
-        $this->assertInstanceOf(LengthAwarePaginator::class, $viewData['articles']);
+        $response = $this->get(route('blog'));
+        
+        $this->assertInstanceOf(LengthAwarePaginator::class, $response->original->getData()['articles']);
     }
 
     /** @test */

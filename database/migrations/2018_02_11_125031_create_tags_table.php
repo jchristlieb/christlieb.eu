@@ -19,13 +19,25 @@ class CreateTagsTable extends Migration
             $table->string('slug')->unique();
             $table->timestamps();
         });
-
+        
         Schema::create('article_tag', function (Blueprint $table) {
-            $table->integer('article_id');
-            $table->integer('tag_id');
+            $table->unsignedInteger('article_id');
+            $table->unsignedInteger('tag_id');
+            
+            $table->foreign('article_id')
+                ->references('id')
+                ->on('articles')
+                ->onDelete('cascade');
+            
+            $table->foreign('tag_id')
+                ->references('id')
+                ->on('tags')
+                ->onDelete('cascade');
         });
+        
+        
     }
-
+    
     /**
      * Reverse the migrations.
      *
