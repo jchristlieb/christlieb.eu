@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Article;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
 
 /**
  * Class ArticlesController.
@@ -45,7 +45,7 @@ class ArticlesController extends Controller
     {
         $data = $request->validate([
             'title' => ['required', Rule::unique('articles')],
-            'content' => ['required']
+            'content' => ['required'],
         ]);
         $article = new Article($data);
         $article->slug = str_slug($request->input('title'));
@@ -56,13 +56,14 @@ class ArticlesController extends Controller
 
         return redirect($article->path());
     }
-    
+
     public function edit($id)
     {
         $article = Article::findOrFail($id);
-        
+
         return view('admin.articles.edit', compact('article'));
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -75,11 +76,11 @@ class ArticlesController extends Controller
         $article = Article::findOrFail($id);
         $article->update($request->validate([
             'title' => ['required', Rule::unique('articles')->ignore($article->id)],
-            'content' => ['required']
+            'content' => ['required'],
         ]));
-    
+
         flash('Successfully updated Article')->success();
-        
+
         return redirect(route('admin.articles.show', $article->id));
     }
 

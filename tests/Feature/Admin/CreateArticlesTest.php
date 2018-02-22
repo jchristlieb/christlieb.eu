@@ -30,7 +30,7 @@ class CreateArticlesTest extends TestCase
             'title' => 'Test Title',
             'content' => 'Test Content',
         ]);
-        
+
         $this->assertCount(1, Article::all());
         $this->assertEquals('success', session()->get('flash_notification')->first()->level);
     }
@@ -47,18 +47,18 @@ class CreateArticlesTest extends TestCase
 
         $response->assertSessionHasErrors('title');
     }
-    
+
     /** @test */
     public function the_title_must_be_unique()
     {
         $this->signIn();
         factory(Article::class)->create(['title' => 'test title']);
-        
-        $response = $this->post("/admin/articles/create", [
+
+        $response = $this->post('/admin/articles/create', [
             'title' => 'test title',
-            'content' => 'test content'
+            'content' => 'test content',
         ]);
-        
+
         $response->assertSessionHasErrors('title');
     }
 
