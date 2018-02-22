@@ -15,8 +15,9 @@ script:
   - npm run test
 
 after_success:
-  - curl -s "https://forge.laravel.com/servers/183115/sites/488203/deploy/http?token=$FORGE_TOKEN"
+  - [ "$TRAVIS_BRANCH" != "master" ] || curl -s "https://forge.laravel.com/servers/183115/sites/488203/deploy/http?token=$FORGE_TOKEN"
 
 cache:
   directories:
     - vendor
+    - node_modules
