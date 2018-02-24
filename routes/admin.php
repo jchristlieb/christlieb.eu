@@ -28,3 +28,6 @@ Route::get('/tags', 'TagsController@index')->name('admin.tags.index');
 Route::get('/tags/{id}', 'TagsController@show')->name('admin.tags.show');
 Route::patch('/tags/{id}', 'TagsController@update')->name('admin.tags.update');
 Route::delete('/tags/{tagId}/articles/{articleId}', 'TagsController@deleteArticleRelation')->name('admin.tags.article.delete');
+
+// Image Routes
+Route::post('/images', 'ImagesController@store')->name('admin.images.store');

@@ -6,6 +6,7 @@
                 ref="trix"
                 input="trix"
                 @trix-change="change"
+                @trix-attachment-add="upload"
                 :placeholder="placeholder">
         </trix-editor>
     </div>
@@ -24,6 +25,26 @@
         methods: {
             change({target}) {
                 this.$emit('input', target.value)
+            },
+            upload({attachment}) {
+                console.log(attachment);
+                const formData = new FormData();
+                formData.append('image', attachment.file);
+                axios.post('/admin/images', formData,
+                    {
+                        headers: { 'content-type': 'multipart/form-data' },
+                        onUploadProgress: progressEvent => {
+                            let percentCompleted = Math.floor((progressEvent.loaded * 100) / progressEvent.total);
+                            attachment.setUploadProgress(percentCompleted);
+                        }
+                    })
+                    .then(response => {
+                        console.log(response);
+                        return attachment.setAttributes({
+                            url: response.data.image_url,
+                        })
+                    })
+                    .catch(error => { console.log(error.response)})
             }
         },
 
@@ -39,7 +60,7 @@
 
 <style scoped>
 trix-editor {
-    min-height: 100px;
+    min-height: 300px;
 }
 </style>
 
