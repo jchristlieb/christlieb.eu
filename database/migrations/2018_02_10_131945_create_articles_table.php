@@ -19,6 +19,7 @@ class CreateArticlesTable extends Migration
             $table->string('slug')->unique();
             $table->text('content');
             $table->unsignedInteger('user_id');
+            $table->integer('promoted')->nullable()->unique();
             $table->timestamps();
         });
     }
