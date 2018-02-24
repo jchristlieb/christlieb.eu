@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Article;
 
 use App\Article;
@@ -21,5 +22,4 @@ class IndexController extends Controller
 
         return view('index', compact('promotedArticles'));
     }
-
 }
