@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Article;
 
 /**
  * Class IndexController.
@@ -14,6 +15,9 @@ class IndexController extends Controller
      */
     public function __invoke()
     {
-        return view('index');
+        $promotedArticles = Article::whereNotNull('promoted')->with('author', 'tags')->get();
+
+        return view('index', compact('promotedArticles'));
     }
+
 }

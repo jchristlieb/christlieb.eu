@@ -14,3 +14,21 @@ $factory->define(\App\Article::class, function (Faker $faker) {
         },
     ];
 });
+
+$factory->state(\App\Article::class, 'promoted_first', function (Faker $faker){
+   return [
+       'promoted' => 1,
+   ];
+});
+
+$factory->state(\App\Article::class, 'promoted_second', function (Faker $faker){
+    return [
+        'promoted' => 2,
+    ];
+});
+
+$factory->state(\App\Article::class, 'promoted_third', function (Faker $faker){
+    return [
+        'promoted' => 3,
+    ];
+});
