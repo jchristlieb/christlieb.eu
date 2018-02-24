@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Tags created');
 
         // Create three posts with distinct promotion status
-        collect(['promoted_first', 'promoted_second', 'promoted_third'])->each(function ($state){
+        collect(['promoted_first', 'promoted_second', 'promoted_third'])->each(function ($state) {
             factory(\App\Article::class)->states($state)->create();
         });
     }

@@ -11,9 +11,10 @@ class FrontpageTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function it_contains_only_promoted_articles(){
+    public function it_contains_only_promoted_articles()
+    {
         factory(Article::class, 10)->create();
-        collect(['promoted_first', 'promoted_second', 'promoted_third'])->each(function ($state){
+        collect(['promoted_first', 'promoted_second', 'promoted_third'])->each(function ($state) {
             factory(\App\Article::class)->states($state)->create();
         });
 
