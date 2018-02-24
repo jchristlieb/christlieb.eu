@@ -81,6 +81,7 @@ Vue.component('tags-widget', require('./components/TagsWidget.vue'));
 Vue.component('update-tag', require('./components/UpdateTagComponent.vue'));
 Vue.component('new-article-form', require('./components/NewArticleForm.vue'));
 Vue.component('tags-input', require('./components/TagsInput.vue'));
+Vue.component('wysiwyg', require('./components/Wysiwyg.vue'));
 
 const app = new Vue({
     el: '#app'
