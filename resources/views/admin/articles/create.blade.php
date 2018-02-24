@@ -9,7 +9,7 @@
             <h3>New Article</h3>
         </div>
         <div class="card-body">
-            <new-article-form url="{{route('admin.articles.store')}}"></new-article-form>
+            <article-form url="{{route('admin.articles.store')}}"></article-form>
         </div>
     </div>
 

@@ -9,6 +9,8 @@
             <h3>Edit Article</h3>
         </div>
         <div class="card-body">
+            <article-form url="{{route('admin.articles.update',$article->id)}}" data-article="{{$article->toJson()}}"></article-form>
+
             @include('partials.form-errors')
             <form method="POST" action="{{route('admin.articles.update', $article->id)}}">
                 {{csrf_field()}}

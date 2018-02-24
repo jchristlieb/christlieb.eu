@@ -79,9 +79,10 @@ window.flash = function(message, type) {
 Vue.component('flash', require('vue-flash'));
 Vue.component('tags-widget', require('./components/TagsWidget.vue'));
 Vue.component('update-tag', require('./components/UpdateTagComponent.vue'));
-Vue.component('new-article-form', require('./components/NewArticleForm.vue'));
+Vue.component('article-form', require('./components/ArticleForm.vue'));
 Vue.component('tags-input', require('./components/TagsInput.vue'));
-Vue.component('wysiwyg', require('./components/Wysiwyg.vue'));
+Vue.component('wysiwygt', require('./components/Wysiwyg.vue'));
+
 
 const app = new Vue({
     el: '#app'

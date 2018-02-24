@@ -6,7 +6,8 @@
           "targets": {
             "node": "current"
           }
-        }]
+        }],
+        "stage-2"
       ]
     },
     "development": {
@@ -17,7 +18,8 @@
             "browsers": "> 2%",
             "uglify": true
           }
-        }]
+        }],
+        "stage-2"
       ]
     },
     "production": {
@@ -28,7 +30,8 @@
             "browsers": "> 2%",
             "uglify": true
           }
-        }]
+        }],
+        "stage-2"
       ]
     }
   }
