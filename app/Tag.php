@@ -11,6 +11,15 @@ class Tag extends Model
 {
     protected $guarded = [];
 
+    protected static function boot()
+    {
+        parent::boot();
+    
+        self::creating(function ($article) {
+            $article->slug = str_slug($article->name);
+        });
+    }
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

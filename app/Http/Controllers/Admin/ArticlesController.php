@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Article;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
@@ -51,7 +52,14 @@ class ArticlesController extends Controller
         $article->slug = str_slug($request->input('title'));
         $article->author()->associate(auth()->user());
         $article->save();
-
+        
+        if($request->input('tags')){
+            foreach ($request->input('tags') as $tag){
+                $tagModel = Tag::firstOrNew(['name' => $tag]);
+                $article->tags()->save($tagModel);
+            }
+        }
+        
         if($request->wantsJson()){
             return response()->json($article);
         }

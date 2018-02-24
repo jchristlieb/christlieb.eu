@@ -18,7 +18,6 @@
     <flash></flash>
     @include('partials.navbar')
     <div class="container py-4">
-        @include('flash::message')
         <div class="row">
             <main class="col-md-9">
                 @yield('content')

@@ -1,7 +1,7 @@
 <template>
     <div>
         <a v-for="tag in tags" :href="'/tags/' + tag.slug">
-            <span class="badge ba" :style="{fontSize:getFontSize(tag)}">{{tag.name}}</span>
+            <span :style="{fontSize:getFontSize(tag)}">{{tag.name}}</span>
         </a>
     </div>
 </template>

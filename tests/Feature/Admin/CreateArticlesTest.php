@@ -74,4 +74,21 @@ class CreateArticlesTest extends TestCase
 
         $response->assertSessionHasErrors('content');
     }
+    
+    /** @test */
+    public function it_saves_the_related_tags()
+    {
+        $this->withoutExceptionHandling();
+        $this->signIn();
+    
+        $this->post(route('admin.articles.store'), [
+            'title' => 'Test Title',
+            'content' => 'Test Content',
+            'tags' => ['foo','bar']
+        ]);
+        
+        $article = Article::first();
+        
+        $this->assertCount(2, $article->tags);
+    }
 }

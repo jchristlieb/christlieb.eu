@@ -17,7 +17,6 @@
     <flash></flash>
     @include('partials.navbar')
     <div class="container py-4">
-        @include('flash::message')
         <div class="row">
             <main class="col-md-12">
                 @yield('content')
