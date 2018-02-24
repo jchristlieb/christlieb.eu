@@ -14,14 +14,13 @@
 
         <div class="form-group">
             <label for="content">Content</label>
-            <textarea class="form-control"
-                      :class="{'is-invalid': errors.content}"
-                      name="content"
-                      id="content"
-                      rows="7"
-                      placeholder="Write your article..."
-                      v-model="article.content">
-            </textarea>
+
+            <wysiwyg class="form-control"
+                     :class="{'is-invalid': errors.content}"
+                     placeholder="Write your article..."
+                     id="content"
+                     v-model="article.content">
+            </wysiwyg>
             <span class="invalid-feedback" v-if="errors.content">
                 <strong>{{ errors.content[0] }}</strong>
             </span>
@@ -37,6 +36,7 @@
 </template>
 
 <script>
+
     export default {
         props: ['url'],
         data() {
@@ -51,17 +51,17 @@
         },
         methods: {
             submit() {
-               axios.post(this.url, this.article)
-                   .then(response => {
-                       flash('New Article created', 'success');
-                       this.clear();
-                   })
-                   .catch(error => {
-                       console.log(error.response.data.errors);
-                       this.errors = error.response.data.errors;
-                   });
+                axios.post(this.url, this.article)
+                    .then(response => {
+                        flash('New Article created', 'success');
+                        this.clear();
+                    })
+                    .catch(error => {
+                        console.log(error.response.data.errors);
+                        this.errors = error.response.data.errors;
+                    });
             },
-            clear(){
+            clear() {
                 this.article = {
                     title: '',
                     content: '',

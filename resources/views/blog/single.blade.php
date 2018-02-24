@@ -17,7 +17,7 @@
             </p>
         </div>
         <div class="card-body">
-            {{$article->content}}
+            {!! $article->content !!}
         </div>
     </article>
 

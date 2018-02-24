@@ -13,7 +13,7 @@
             <p>by {{$article->author->name}} on {{$article->created_at}}</p>
         </div>
         <div class="card-body">
-            {{($article->content)}}
+            {!! $article->content !!}
         </div>
     </article>
 
