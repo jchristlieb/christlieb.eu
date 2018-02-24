@@ -49,7 +49,7 @@ class Article extends Model
 
         return $matches[0].'...';
     }
-    
+
     public function getContentAttribute($body)
     {
         return \Purify::clean($body);
