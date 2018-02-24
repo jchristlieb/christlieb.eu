@@ -7,6 +7,8 @@ use App\Article;
 
 use App\Article;
 
+use App\Article;
+
 /**
  * Class IndexController.
  */
