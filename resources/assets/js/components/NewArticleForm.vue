@@ -54,11 +54,19 @@
                axios.post(this.url, this.article)
                    .then(response => {
                        flash('New Article created', 'success');
+                       this.clear();
                    })
                    .catch(error => {
                        console.log(error.response.data.errors);
                        this.errors = error.response.data.errors;
                    });
+            },
+            clear(){
+                this.article = {
+                    title: '',
+                    content: '',
+                    tags: [],
+                };
             }
         }
     }
