@@ -40,5 +40,9 @@ class DatabaseSeeder extends Seeder
         collect(['promoted_first', 'promoted_second', 'promoted_third'])->each(function ($state) {
             factory(\App\Article::class)->states($state)->create();
         });
+        $this->command->info('Promoted Articles created');
+        
+        factory(\App\Image::class,20)->states('seedImages')->create();
+        $this->command->info('Images created');
     }
 }
