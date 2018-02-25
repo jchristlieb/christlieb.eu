@@ -1,5 +1,7 @@
 <template>
     <form @submit.prevent="submit">
+        <image-component @selected="fillImage"/>
+        <img v-if="article.image_id" :src="'/storage/' + image.path"/>
         <div class="form-group">
             <label for="title">Title</label>
             <input id="title" type="text"
@@ -47,7 +49,9 @@
                     title: '',
                     content: '',
                     tags: [],
+                    image_id: false
                 },
+                image: {},
                 errors: {}
             }
         },
@@ -74,6 +78,10 @@
                     content: '',
                     tags: [],
                 };
+            },
+            fillImage(image){
+                this.image = image;
+                this.article.image_id = image.id;
             }
         }
     }

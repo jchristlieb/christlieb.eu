@@ -11,7 +11,7 @@
         <div class="card-body">
             <div class="row">
                 @forelse($images as $image)
-                    <div class="col-sm-3 mb-3">
+                    <div class="col-sm-4 mb-3">
                         <img src="{{Storage::url($image->path)}}" alt="{{$image->alt}}"/>
                     </div>
                 @empty

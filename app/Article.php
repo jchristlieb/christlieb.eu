@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $updated_at
  * @property string slug
  * @property string content
+ * @property mixed $image
  */
 class Article extends Model
 {
@@ -21,7 +22,12 @@ class Article extends Model
     {
         return "/blog/{$this->slug}";
     }
-
+    
+    public function image()
+    {
+        return $this->belongsTo(Image::class);
+    }
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

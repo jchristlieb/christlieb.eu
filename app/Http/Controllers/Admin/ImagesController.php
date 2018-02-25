@@ -9,9 +9,13 @@ use Illuminate\Support\Facades\Storage;
 
 class ImagesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $images = Image::all();
+        
+        if($request->wantsJson()){
+            return response()->json($images);
+        }
         
         return view('admin.images.index', compact('images'));
     }
