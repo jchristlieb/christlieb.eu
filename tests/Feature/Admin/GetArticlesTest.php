@@ -6,7 +6,7 @@ use App\Article;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class RetrieveArticlesTest extends TestCase
+class GetArticlesTest extends TestCase
 {
     use RefreshDatabase;
 

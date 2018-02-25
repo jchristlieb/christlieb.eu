@@ -20,21 +20,26 @@
     <div class="container py-4">
         <div class="row">
             <aside class="col-md-3">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <i class="fal fa-newspaper fa-lg"></i> Blog
+                <ul class="nav flex-column pt-5">
+                    <li class="nav-item mb-4">
+                        <i class="fal fa-cogs"></i>
+                        <a href="{{route('admin.dashboard')}}">Dashboard</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.dashboard')}}">Dashboard</a>
+                    <li class="nav-item mb-4">
+                        <i class="fal fa-newspaper"></i>
+                        <a href="{{route('admin.articles.create')}}">New Article</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.articles.create')}}">New Article</a>
+                    <li class="nav-item mb-4">
+                        <i class="fal fa-newspaper"></i>
+                        <a href="{{route('admin.articles.index')}}">Articles</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.articles.index')}}">Articles</a>
+                    <li class="nav-item mb-4">
+                        <i class="fal fa-tags"></i>
+                        <a href="{{route('admin.tags.index')}}">Tags</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.tags.index')}}">Tags</a>
+                    <li class="nav-item mb-4">
+                        <i class="fal fa-images"></i>
+                        <a href="{{route('admin.images.index')}}">Images</a>
                     </li>
                 </ul>
             </aside>

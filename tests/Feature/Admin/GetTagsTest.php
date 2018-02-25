@@ -6,7 +6,7 @@ use App\Tag;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class RetrieveTagsTest extends TestCase
+class GetTagsTest extends TestCase
 {
     use RefreshDatabase;
 

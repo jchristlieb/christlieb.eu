@@ -81,7 +81,8 @@ Vue.component('tags-widget', require('./components/TagsWidget.vue'));
 Vue.component('update-tag', require('./components/UpdateTagComponent.vue'));
 Vue.component('article-form', require('./components/ArticleForm.vue'));
 Vue.component('tags-input', require('./components/TagsInput.vue'));
-Vue.component('wysiwygt', require('./components/Wysiwyg.vue'));
+Vue.component('wysiwyg', require('./components/Wysiwyg.vue'));
+Vue.component('image-component', require('./components/ImageComponent.vue'));
 
 
 const app = new Vue({
