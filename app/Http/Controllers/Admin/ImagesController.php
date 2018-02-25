@@ -12,14 +12,14 @@ class ImagesController extends Controller
     public function index(Request $request)
     {
         $images = Image::all();
-        
-        if($request->wantsJson()){
+
+        if ($request->wantsJson()) {
             return response()->json($images);
         }
-        
+
         return view('admin.images.index', compact('images'));
     }
-    
+
 //    public function store(Request $request)
 //    {
 //        $path = $request->file('image')->store('images', 'public');

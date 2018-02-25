@@ -41,8 +41,8 @@ class DatabaseSeeder extends Seeder
             factory(\App\Article::class)->states($state)->create();
         });
         $this->command->info('Promoted Articles created');
-        
-        factory(\App\Image::class,20)->states('seedImages')->create();
+
+        factory(\App\Image::class, 20)->states('seedImages')->create();
         $this->command->info('Images created');
     }
 }

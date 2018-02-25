@@ -25,8 +25,8 @@ class ArticlesController extends Controller
 
     public function show($id)
     {
-        $article = Article::with('tags','image')->find($id);
-        
+        $article = Article::with('tags', 'image')->find($id);
+
         return view('admin.articles.show', compact('article'));
     }
 
@@ -51,8 +51,8 @@ class ArticlesController extends Controller
         $article = new Article($data);
         $article->slug = str_slug($request->input('title'));
         $article->author()->associate(auth()->user());
-        
-        if($imageId = $request->input('image_id')){
+
+        if ($imageId = $request->input('image_id')) {
             $article->image_id = $imageId;
         }
         $article->save();

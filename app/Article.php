@@ -22,12 +22,12 @@ class Article extends Model
     {
         return "/blog/{$this->slug}";
     }
-    
+
     public function image()
     {
         return $this->belongsTo(Image::class);
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
