@@ -17,9 +17,9 @@
 <div id="app">
     <flash></flash>
     @include('partials.navbar')
-    <div class="container py-4">
-        <div class="row">
-            <aside class="col-md-3">
+    <div class="container py-4 mx-auto">
+        <div class="flex -mx-2">
+            <aside class="p2">
                 <ul class="nav flex-column pt-5">
                     <li class="nav-item mb-4">
                         <i class="fal fa-cogs"></i>
@@ -43,7 +43,7 @@
                     </li>
                 </ul>
             </aside>
-            <main class="col-md-9">
+            <main class="p-2">
                 @yield('content')
             </main>
         </div>

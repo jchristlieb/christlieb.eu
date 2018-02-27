@@ -1,37 +1,43 @@
 <template>
-    <transition name="modal">
-        <div class="modal-mask">
-            <div class="modal-wrapper">
-                <div class="modal-container">
-
-                    <div class="modal-header">
-                        <slot name="header">
-                            default header
-                        </slot>
-                    </div>
-
-                    <div class="modal-body">
-                        <slot name="body">
-                            default body
-                        </slot>
-                    </div>
-
-                    <div class="modal-footer">
-                        <slot name="footer">
-                            default footer
-                            <button class="modal-default-button" @click="$emit('close')">
-                                OK
-                            </button>
-                        </slot>
-                    </div>
-                </div>
+        <div @click.self="dismissModal" class="pin absolute flex items-center justify-center bg-transparent-black z-10 p-8">
+            <div class="bg-white rounded shadow p-4 max-w-lg max-h-full overflow-y-scroll">
+                <slot></slot>
             </div>
         </div>
-    </transition>
 </template>
 
 <script>
     export default {
+        props: ['type'],
+        data() {
+            return {
+                show: false
+            }
+        },
+        computed: {
+            typeColor() {
+                let color;
+                switch (this.type) {
+                    case 'success':
+                        color = 'bg-green hover:bg-green-dark'
+                        break;
+                    case 'error':
+                        color = 'bg-red hover:bg-red-dark'
+                        break;
+                    case 'warning':
+                        color = 'bg-yellow hover:bg-yellow-dark'
+                        break;
+                    default:
+                        color = 'bg-blue hover:bg-blue-dark'
+                }
 
+                return color;
+            }
+        },
+        methods: {
+            dismissModal() {
+                this.$emit('close')
+            }
+        }
     }
 </script>

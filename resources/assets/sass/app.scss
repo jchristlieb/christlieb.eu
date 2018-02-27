@@ -2,18 +2,10 @@
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
-// Variables
-@import "variables";
+@tailwind preflight;
 
-// Vendors
-@import '~bootstrap/scss/bootstrap';
-@import "../fontawesome-5/scss/fontawesome";
-@import "../fontawesome-5/scss/fa-light";
+@tailwind utilities;
 
-// Components
-@import "components/navbar";
-@import "components/tags-input";
-@import "components/card";
-
-//Widgets
-@import "widgets/tags";
+[v-cloak] {
+    display: none;
+}

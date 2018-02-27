@@ -3,10 +3,10 @@
 @section('title',  'Welcome')
 @section('content')
 
-    <div class="row">
+    <div class="flex flex-wrap">
         @foreach($promotedArticles as $article)
 
-        <div class="{{ $loop->first ?'col-md-12' : 'col-md-6' }}">
+        <div class="{{ $loop->first ?'w-full' : 'w-1/2' }}">
 
             <article class="card mb-4">
                 <div class="card-header">
