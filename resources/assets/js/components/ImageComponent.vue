@@ -1,35 +1,21 @@
 <template>
     <div>
-        <button type="button" class="btn btn-primary" @click="loadImages" data-toggle="modal"
-                data-target="#exampleModalLong">Add Image
-        </button>
+        <button type="button" class="btn btn-primary" @click="toggleModal">Add Image</button>
         <!-- Modal -->
-        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
-             aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div v-if="loading" class="text-center">
-                            <i class="fal fa-spinner fa-pulse fa-5x"></i>
-                        </div>
-                        <div v-else class="row">
-                            <div class="col-sm-3 mb-3" v-for="image in images" >
-                                <img :class="{selected: image.id == selected.id}" :src="'/storage/' + image.path" @click="selectImage(image)"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="save">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+     <modal v-if="showModal" @close="showModal = false">
+         <div class="flex flex-wrap">
+             <div v-if="loading" class="text-center">
+                 <i class="fal fa-spinner fa-pulse fa-5x"></i>
+             </div>
+                 <div class="w-1/4" v-for="image in images" >
+                     <img :class="{selected: image.id == selected.id}" :src="'/storage/' + image.path" @click="selectImage(image)"/>
+                 </div>
+         </div>
+         <div class="modal-footer">
+             <button type="button" class="text-white bg-blue-light rounded py-2 px-4" @click="save">Save</button>
+             <button type="button" class="text-black py-2 px-4" @click="toggleModal">Cancel</button>
+         </div>
+     </modal>
     </div>
 </template>
 
@@ -37,12 +23,19 @@
     export default {
         data() {
             return {
+                showModal: false,
                 loading: false,
                 images: [],
                 selected: false
             }
         },
         methods: {
+            toggleModal(){
+              if(this.images.length <= 0){
+                  this.loadImages()
+              }
+              this.showModal = !this.showModal
+            },
             loadImages() {
                 this.loading = true;
                 axios.get('/admin/images').then(response => {
@@ -54,7 +47,8 @@
                 this.selected = image;
             },
             save(){
-                this.$emit('selected', this.selected)
+                this.$emit('selected', this.selected);
+                this.toggleModal();
             }
         }
     }
