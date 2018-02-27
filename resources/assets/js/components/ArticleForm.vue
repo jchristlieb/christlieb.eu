@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="submit">
-        <image-component @selected="fillImage"/>
+        <add-image @selected="fillImage"/>
         <img v-if="article.image_id" :src="'/storage/' + image.path"/>
         <div class="form-group">
             <label for="title">Title</label>

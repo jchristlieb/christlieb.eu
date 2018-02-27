@@ -20,10 +20,14 @@ class ImagesController extends Controller
         return view('admin.images.index', compact('images'));
     }
 
-//    public function store(Request $request)
-//    {
-//        $path = $request->file('image')->store('images', 'public');
-//
-//        return response()->json(['image_url' => Storage::url($path)]);
-//    }
+    public function store(Request $request)
+    {
+        $uploadedFile = $request->file('image');
+        $image = new Image();
+        $image->title = $uploadedFile->getClientOriginalName();
+        $image->path = $uploadedFile->store('images', 'public');
+        $image->save();
+        
+        return response()->json($image);
+    }
 }
