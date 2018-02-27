@@ -46,6 +46,5 @@ class DatabaseSeeder extends Seeder
             $promotedArticle->save();
         });
         $this->command->info('Promoted Articles created');
-
     }
 }
