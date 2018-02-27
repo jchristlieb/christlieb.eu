@@ -93,7 +93,6 @@ const app = new Vue({
         return {
             menuOpen: false,
             accountOpen: false,
-            showModal: false
         }
     },
     directives: {

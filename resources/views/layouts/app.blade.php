@@ -18,9 +18,7 @@
     <flash></flash>
     @include('partials.navbar')
     <div class="container py-4 mx-auto">
-        <button @click="showModal = true">open modal</button>
 
-        <modal ></modal>
         <div class="flex -mx-2">
             <main class="p-2">
                 @yield('content')

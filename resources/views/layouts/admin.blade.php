@@ -19,31 +19,26 @@
     @include('partials.navbar')
     <div class="container py-4 mx-auto">
         <div class="flex -mx-2">
-            <aside class="p2">
-                <ul class="nav flex-column pt-5">
-                    <li class="nav-item mb-4">
-                        <i class="fal fa-cogs"></i>
+            <aside class="px-2 py-8 w-1/5">
+                <ul class="list-reset">
+                    <li class="mb-4">
                         <a href="{{route('admin.dashboard')}}">Dashboard</a>
                     </li>
-                    <li class="nav-item mb-4">
-                        <i class="fal fa-newspaper"></i>
+                    <li class="mb-4">
                         <a href="{{route('admin.articles.create')}}">New Article</a>
                     </li>
-                    <li class="nav-item mb-4">
-                        <i class="fal fa-newspaper"></i>
+                    <li class="mb-4">
                         <a href="{{route('admin.articles.index')}}">Articles</a>
                     </li>
-                    <li class="nav-item mb-4">
-                        <i class="fal fa-tags"></i>
+                    <li class="mb-4">
                         <a href="{{route('admin.tags.index')}}">Tags</a>
                     </li>
-                    <li class="nav-item mb-4">
-                        <i class="fal fa-images"></i>
+                    <li class="mb-4">
                         <a href="{{route('admin.images.index')}}">Images</a>
                     </li>
                 </ul>
             </aside>
-            <main class="p-2">
+            <main class="p-2 w-4/5">
                 @yield('content')
             </main>
         </div>

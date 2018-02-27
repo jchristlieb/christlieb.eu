@@ -33,16 +33,19 @@ class DatabaseSeeder extends Seeder
         // Create comments for each post
         $articles->each(function ($article) use ($tags) {
             $article->tags()->saveMany($tags->random(rand(1, 4)));
+            $article->image()->associate(factory(\App\Image::class)->states('seedImages')->create());
+            $article->save();
         });
         $this->command->info('Tags created');
 
         // Create three posts with distinct promotion status
         collect(['promoted_first', 'promoted_second', 'promoted_third'])->each(function ($state) {
-            factory(\App\Article::class)->states($state)->create();
+            /** @var \App\Article $promotedArticle */
+            $promotedArticle = factory(\App\Article::class)->states($state)->create();
+            $promotedArticle->image()->associate(factory(\App\Image::class)->states('seedImages')->create());
+            $promotedArticle->save();
         });
         $this->command->info('Promoted Articles created');
 
-        factory(\App\Image::class, 20)->states('seedImages')->create();
-        $this->command->info('Images created');
     }
 }
