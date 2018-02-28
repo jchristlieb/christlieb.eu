@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 
 class ImagesController extends Controller
 {
@@ -27,7 +26,7 @@ class ImagesController extends Controller
         $image->title = $uploadedFile->getClientOriginalName();
         $image->path = $uploadedFile->store('images', 'public');
         $image->save();
-        
+
         return response()->json($image);
     }
 }
