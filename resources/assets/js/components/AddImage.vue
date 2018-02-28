@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button type="button" class="btn btn-primary" @click="toggleModal">Add Image</button>
+        <button type="button" class="btn" @click="toggleModal">Add Image</button>
         <!-- Modal -->
         <modal v-if="showModal" @close="showModal = false">
             <div class="flex flex-wrap">
@@ -8,10 +8,18 @@
                     <i class="fal fa-spinner fa-pulse fa-5x"></i>
                 </div>
                 <div v-else>
-                    <upload-image @upload="pushImage"></upload-image>
+                    <div class="flex content-between">
+                        <button type="button" class="text-white bg-blue-light rounded py-2 px-4" @click="save">Save
+                        </button>
+                        <upload-image @upload="pushImage"></upload-image>
+                    </div>
+                    <div v-if="selected">
+                        <p class="mb-2">Titel: {{selected.title}}</p>
+                        <p>Alt: {{selected.alt}}</p>
+                    </div>
                     <div class="flex flex-wrap">
                         <div class="w-1/4" v-for="image in images">
-                            <img :class="{selected: image.id == selected.id}" :src="'/storage/' + image.path"
+                            <img :class="{'border border-red': image.id == selected.id}" :src="'/storage/' + image.path"
                                  @click="selectImage(image)"/>
                         </div>
                     </div>
@@ -37,8 +45,8 @@
             }
         },
         methods: {
-            pushImage(image){
-              this.images.unshift(image);
+            pushImage(image) {
+                this.images.unshift(image);
             },
             toggleModal() {
                 if (this.images.length <= 0) {

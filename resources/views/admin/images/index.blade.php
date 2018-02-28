@@ -9,9 +9,9 @@
             <h3>Images</h3>
         </div>
         <div class="card-body">
-            <div class="row">
+            <div class="flex flex-wrap">
                 @forelse($images as $image)
-                    <div class="col-sm-4 mb-3">
+                    <div class="w-1/4">
                         <img src="{{Storage::url($image->path)}}" alt="{{$image->alt}}"/>
                     </div>
                 @empty

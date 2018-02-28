@@ -13,21 +13,22 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="font-sans">
 <div id="app">
     <flash></flash>
-    @include('partials.navbar')
+    @include('partials.header')
     <div class="container py-4 mx-auto">
 
         <div class="flex -mx-2">
-            <main class="p-2">
+            <main class="p-3 w-2/3">
                 @yield('content')
             </main>
-            <aside class="p-2">
+            <aside class="p-3 w-1/3">
                 @yield('sidebar')
             </aside>
         </div>
     </div>
+    @include('partials.footer')
 </div>
 
 <!-- Scripts -->

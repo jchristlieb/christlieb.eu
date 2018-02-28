@@ -1,18 +1,22 @@
+[v-cloak] {
+    display: none;
+}
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
 @tailwind preflight;
 
 @tailwind utilities;
 
-[v-cloak] {
-    display: none;
-}
 
 a{
     @apply .no-underline .text-blue;
 }
 table{
     @apply .w-full;
+}
+
+.btn{
+    @apply .text-white .py-2 .px-4 .rounded .bg-blue-light;
 }

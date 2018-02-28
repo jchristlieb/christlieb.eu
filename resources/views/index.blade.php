@@ -6,27 +6,20 @@
     <main class="flex flex-wrap -mx-4">
         @foreach($promotedArticles as $article)
 
-            <div class="px-4{{ $loop->first ?' w-full' : ' w-1/2' }}">
+            <div class="mb-4 px-4{{ $loop->first ?' w-full' : ' w-1/2' }}">
 
-                <article class="card border rounded mb-4">
+                <article class="relative">
                     <header>
                         @if($article->image)
-                            <img src="{{Storage::url($article->image->path)}}" class="mw-100"/>
+                            <img src="{{Storage::url($article->image->path)}}" class="w-full"/>
                         @endif
-                        <div class="p-4">
-                            <h3><a href="{{$article->path()}}">{{$article->title}}</a></h3>
-                            @if($article->updated_at != $article->created_at)
-                                <p>updated at: {{$article->updated_at}}</p>
+                        <div class="absolute pin-l pin-b w-full bg-grey-transparent p-8">
+                            <h3><a class="text-grey-lightest" href="{{$article->path()}}">{{$article->title}}</a></h3>
+                            @if($loop->first)
+                                <p class="text-grey-light">{{$article->getExcerpt(20)}}</p>
                             @endif
-                            <p class=" border-b pb-8">by {{$article->author->name}} on {{$article->created_at}} in
-                                @foreach($article->tags as $tag)
-                                    <a href="{{route('tags.show', $tag->slug)}}"><span
-                                                class="badge badge-primary">{{$tag->name}}</span></a>
-                                @endforeach
-                            </p>
                         </div>
                     </header>
-                    <main class="p-4">{{ $article->getExcerpt()  }}</main>
                 </article>
 
             </div>
@@ -39,6 +32,18 @@
 @endsection
 
 @section('sidebar')
-    @widget('LatestArticleWidget')
-    @widget('TagsWidget')
+    <div class="relative mb-4">
+        <img class="w-full" src="http://lorempixel.com/380/260/technics/"/>
+        <div class="absolute pin bg-blue opacity-75"></div>
+        <div class="absolute pin text-center flex justify-center">
+            <div class="self-center text-grey-lightest text-5xl bold">Laravel<p class="text-base">Featured Topic</p></div>
+        </div>
+    </div>
+    <div class="relative mb-4">
+        <img class="w-full" src="http://lorempixel.com/380/260/technics/"/>
+        <div class="absolute pin bg-red opacity-75"></div>
+        <div class="absolute pin text-center flex justify-center">
+            <div class="self-center text-grey-lightest text-5xl bold">PHP<p class="text-base">Featured Topic</p></div>
+        </div>
+    </div>
 @endsection
