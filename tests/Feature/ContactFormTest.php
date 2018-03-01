@@ -19,7 +19,7 @@ class ContactFormTest extends TestCase
     {
         Mail::fake();
 
-        $response = $this->post('/contact', [
+        $this->post('/contact', [
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'message' => 'This is a test message',
