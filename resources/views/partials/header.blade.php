@@ -10,7 +10,7 @@
         <div class="self-center border-t-2 border-slate flex-1">&nbsp;</div>
     </div>
     @auth
-        <div class="absolute pin-t pin-l bg-red-light shadow p-3"><a class="text-white" href="{{route('admin.dashboard')}}">@include('svg.cogs')</a></div>
+        <div class="absolute pin-t pin-l bg-red-light shadow p-3"><a class="text-white" href="{{route('admin.dashboard')}}">@include('svg.cogs', ['class' => 'fill-current h-6 w-6'])</a></div>
     @endauth
     <div class="absolute pin-t pin-r bg-red-light shadow p-3"><a href="{{route('feeds.main')}}">@include('svg.rss')<p class="text-white text-xs tracking-xl">RSS</p></a></div>
 </div>

@@ -23,24 +23,39 @@
         <div class="flex -mx-2">
             <aside class="p-3 w-1/4">
                 <ul class="list-reset">
-                    <li class="mb-4">
-                        <a href="{{route('admin.dashboard')}}">Dashboard</a>
+                    <li class="mb-6 flex">
+                        <div class="mr-3 text-grey-dark">
+                            @include('svg.cogs', ['class' => 'fill-current h-4 w-4'])
+                        </div>
+                        <a class="text-grey-dark text-sm" href="{{route('admin.dashboard')}}">Dashboard</a>
                     </li>
-                    <li class="mb-4">
-                        <a href="{{route('admin.articles.create')}}">New Article</a>
+                    <li class="mb-6 flex">
+                        <div class="mr-3 text-grey-dark">
+                            @include('svg.pencil-alt', ['class' => 'fill-current h-4 w-4'])
+                        </div>
+                        <a class="text-grey-dark text-sm" href="{{route('admin.articles.create')}}">New Article</a>
                     </li>
-                    <li class="mb-4">
-                        <a href="{{route('admin.articles.index')}}">Articles</a>
+                    <li class="mb-6 flex">
+                        <div class="mr-3 text-grey-dark">
+                            @include('svg.newspaper', ['class' => 'fill-current h-4 w-4'])
+                        </div>
+                        <a class="text-grey-dark text-sm" href="{{route('admin.articles.index')}}">Articles</a>
                     </li>
-                    <li class="mb-4">
-                        <a href="{{route('admin.tags.index')}}">Tags</a>
+                    <li class="mb-6 flex">
+                        <div class="mr-3 text-grey-dark">
+                            @include('svg.tags', ['class' => 'fill-current h-4 w-4'])
+                        </div>
+                        <a class="text-grey-dark text-sm" href="{{route('admin.tags.index')}}">Tags</a>
                     </li>
-                    <li class="mb-4">
-                        <a href="{{route('admin.images.index')}}">Images</a>
+                    <li class="mb-6 flex">
+                        <div class="mr-3 text-grey-dark">
+                            @include('svg.images', ['class' => 'fill-current h-4 w-4'])
+                        </div>
+                        <a class="text-grey-dark text-sm" href="{{route('admin.images.index')}}">Images</a>
                     </li>
                 </ul>
             </aside>
-            <main class="p-3 w-3/4">
+            <main class="p-3 w-2/3">
                 @yield('content')
             </main>
         </div>
