@@ -13,7 +13,7 @@ $factory->define(\App\Article::class, function (Faker $faker) {
             return factory(\App\User::class)->create()->id;
         },
         'is_published' => true,
-        'published_at' => \Carbon\Carbon::now(),
+        'published_at' => \Carbon\Carbon::now()->subDay(rand(1,100)),
     ];
 });
 
