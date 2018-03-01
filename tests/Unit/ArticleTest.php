@@ -66,7 +66,7 @@ class ArticleTest extends TestCase
     /** @test */
     public function it_can_be_published_instantly()
     {
-        $article = factory(Article::class)->create();
+        $article = factory(Article::class)->states('unpublished')->create();
         $this->assertFalse($article->fresh()->is_published);
         
         $article->publish();
@@ -77,7 +77,7 @@ class ArticleTest extends TestCase
     /** @test */
     public function it_can_be_published_on_date()
     {
-        $article = factory(Article::class)->create();
+        $article = factory(Article::class)->states('unpublished')->create();
         $this->assertFalse($article->fresh()->is_published);
         
         $article->publish(Carbon::now()->subDay());
@@ -91,7 +91,7 @@ class ArticleTest extends TestCase
     /** @test */
     public function not_published_articles_are_excluded_by_default()
     {
-        factory(Article::class, 10)->create();
+        factory(Article::class, 10)->states('unpublished')->create();
         
         $this->assertCount(0, Article::all());
     }
@@ -99,7 +99,7 @@ class ArticleTest extends TestCase
     /** @test */
     public function not_published_articles_can_be_included()
     {
-        factory(Article::class, 10)->create();
+        factory(Article::class, 10)->states('unpublished')->create();
         
         $this->assertCount(10, Article::withDrafts()->get());
     }

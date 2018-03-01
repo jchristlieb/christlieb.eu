@@ -37,6 +37,6 @@ class PublishCommand extends Command
      */
     public function handle()
     {
-        Article::where('is_published', false)->where('published_at', '<=', Carbon::now())->update(['is_published' => true]);
+        Article::withDrafts()->where('is_published', false)->where('published_at', '<=', Carbon::now())->update(['is_published' => true]);
     }
 }

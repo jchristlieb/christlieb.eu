@@ -31,6 +31,9 @@
             <label for="tags">Tags</label>
             <tags-input id="tags" v-model="article.tags"></tags-input>
         </div>
+        <div class="">
+            <datepicker v-model="article.date"></datepicker>
+        </div>
         <div class="text-right">
             <button type="submit" class="btn btn-primary">save</button>
         </div>
@@ -38,10 +41,14 @@
 </template>
 
 <script>
+    import Datepicker from 'vuejs-datepicker';
     import Wysiwyg from "./Wysiwyg";
 
     export default {
-        components: {Wysiwyg},
+        components: {
+            Wysiwyg,
+            Datepicker
+        },
         props: ['url', 'dataArticle'],
         data() {
             return {
@@ -49,7 +56,8 @@
                     title: '',
                     content: '',
                     tags: [],
-                    image_id: false
+                    image_id: false,
+                    published_at: false
                 },
                 image: {},
                 errors: {}

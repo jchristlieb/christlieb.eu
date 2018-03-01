@@ -13,13 +13,15 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+
+<body class="font-sans">
 <div id="app">
     <flash></flash>
-    @include('partials.navbar')
+    @include('partials.header')
     <div class="container py-4 mx-auto">
+
         <div class="flex -mx-2">
-            <aside class="px-2 py-8 w-1/5">
+            <aside class="p-3 w-1/4">
                 <ul class="list-reset">
                     <li class="mb-4">
                         <a href="{{route('admin.dashboard')}}">Dashboard</a>
@@ -38,13 +40,14 @@
                     </li>
                 </ul>
             </aside>
-            <main class="p-2 w-4/5">
+            <main class="p-3 w-3/4">
                 @yield('content')
             </main>
         </div>
     </div>
     @include('partials.footer')
 </div>
+
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>

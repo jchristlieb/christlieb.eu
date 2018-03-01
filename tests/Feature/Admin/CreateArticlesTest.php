@@ -31,7 +31,7 @@ class CreateArticlesTest extends TestCase
             'content' => 'Test Content',
         ]);
 
-        $this->assertCount(1, Article::all());
+        $this->assertCount(1, Article::withDrafts()->get());
         $this->assertEquals('success', session()->get('flash_notification')->first()->level);
     }
 
@@ -87,7 +87,7 @@ class CreateArticlesTest extends TestCase
             'tags' => ['foo', 'bar'],
         ]);
 
-        $article = Article::first();
+        $article = Article::withDrafts()->first();
 
         $this->assertCount(2, $article->tags);
     }

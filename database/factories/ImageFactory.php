@@ -5,7 +5,7 @@ use Faker\Generator as Faker;
 $factory->define(\App\Image::class, function (Faker $faker) {
     return [
         'alt' => $faker->sentence,
-        'title' => $faker->paragraphs(1, true),
+        'title' => $faker->words(3, true),
         'path' => function () use ($faker) {
             $path = Storage::disk('public')->put('images', \Illuminate\Http\UploadedFile::fake()->image('test.png'));
 

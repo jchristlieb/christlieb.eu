@@ -1,7 +1,7 @@
 <div class="container mx-auto relative">
     <div class="text-center pt-6 mb-8">
-            <a class="uppercase tracking-wide bold text-grey-dark hover:text-blue px-6" href="#">@include('svg.menu-icon-left')<span>blog</span>@include('svg.menu-icon-right')</a>
-            <a class="uppercase tracking-wide bold text-grey-dark hover:text-blue px-6" href="#">@include('svg.menu-icon-left')<span>about us</span>@include('svg.menu-icon-right')</a>
+            <a class="uppercase tracking-wide bold text-grey-dark hover:text-blue px-6" href="{{route('blog')}}">@include('svg.menu-icon-left')<span>blog</span>@include('svg.menu-icon-right')</a>
+            <a class="uppercase tracking-wide bold text-grey-dark hover:text-blue px-6" href="{{route('about-us')}}">@include('svg.menu-icon-left')<span>about us</span>@include('svg.menu-icon-right')</a>
             <a class="uppercase tracking-wide bold text-grey-dark hover:text-blue px-6" href="#">@include('svg.menu-icon-left')<span>contact</span>@include('svg.menu-icon-right')</a>
     </div>
     <div class="flex items-stretch pt-8">

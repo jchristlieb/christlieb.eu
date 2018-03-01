@@ -12,6 +12,8 @@ $factory->define(\App\Article::class, function (Faker $faker) {
         'user_id' => function () {
             return factory(\App\User::class)->create()->id;
         },
+        'is_published' => true,
+        'published_at' => \Carbon\Carbon::now()
     ];
 });
 
