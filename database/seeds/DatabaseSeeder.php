@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         });
         $this->command->info('Tags created');
 
-        collect([1,2,3])->each(function ($state) use ($articles){
+        collect([1, 2, 3])->each(function ($state) use ($articles) {
             $articles->random()->update(['promoted' => $state]);
         });
 
