@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Mail\ContactForm;
 use Tests\TestCase;
+use App\Mail\ContactForm;
 use Illuminate\Support\Facades\Mail;
 
 class ContactFormTest extends TestCase
@@ -24,9 +24,9 @@ class ContactFormTest extends TestCase
             'email' => 'john@example.com',
             'message' => 'This is a test message',
         ]);
-    
+
         $this->assertEquals('success', session()->get('flash_notification')->first()->level);
-    
+
         Mail::assertSent(ContactForm::class);
     }
 
@@ -41,7 +41,6 @@ class ContactFormTest extends TestCase
 
         $response->assertRedirect('/contact');
     }
-    
 
     /** @test */
     public function name_is_required()

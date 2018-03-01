@@ -12,7 +12,7 @@ class ContactController extends Controller
     {
         return view('contact');
     }
-    
+
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -20,11 +20,11 @@ class ContactController extends Controller
             'email' => 'required',
             'message' => 'required',
         ]);
-        
+
         Mail::send(new ContactForm($data));
-        
+
         flash('Contact form successfully send')->success();
-        
+
         return redirect()->back();
     }
 }
