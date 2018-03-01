@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('christlieb:publish')->hourly();
+        $schedule->command('christlieb:publish')->hourly();
     }
 
     /**

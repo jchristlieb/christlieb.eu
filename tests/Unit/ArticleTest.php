@@ -62,45 +62,45 @@ class ArticleTest extends TestCase
             'tag_id' => $tag->id,
         ]);
     }
-    
+
     /** @test */
     public function it_can_be_published_instantly()
     {
         $article = factory(Article::class)->states('unpublished')->create();
         $this->assertFalse($article->fresh()->is_published);
-        
+
         $article->publish();
-        
+
         $this->assertTrue($article->fresh()->is_published);
     }
-    
+
     /** @test */
     public function it_can_be_published_on_date()
     {
         $article = factory(Article::class)->states('unpublished')->create();
         $this->assertFalse($article->fresh()->is_published);
-        
+
         $article->publish(Carbon::now()->subDay());
         $this->assertFalse($article->fresh()->is_published);
-        
+
         $this->artisan('christlieb:publish');
-    
+
         $this->assertTrue($article->fresh()->is_published);
     }
-    
+
     /** @test */
     public function not_published_articles_are_excluded_by_default()
     {
         factory(Article::class, 10)->states('unpublished')->create();
-        
+
         $this->assertCount(0, Article::all());
     }
-    
+
     /** @test */
     public function not_published_articles_can_be_included()
     {
         factory(Article::class, 10)->states('unpublished')->create();
-        
+
         $this->assertCount(10, Article::withDrafts()->get());
     }
 }
