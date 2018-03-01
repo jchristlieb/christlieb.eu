@@ -12,17 +12,13 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="font-sans">
 <div id="app">
     <flash></flash>
-    @include('partials.navbar')
-    <div class="container py-4">
-        <div class="row">
-            <main class="col-md-12">
+    @include('partials.header')
+
                 @yield('content')
-            </main>
-        </div>
-    </div>
+
     @include('partials.footer')
 </div>
 

@@ -3,7 +3,7 @@
 use Faker\Generator as Faker;
 
 $factory->define(\App\Article::class, function (Faker $faker) {
-    $title = $faker->words(rand(5, 8), true);
+    $title = $faker->words(rand(3, 6), true);
 
     return [
         'title' => $title,

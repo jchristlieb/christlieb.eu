@@ -58,12 +58,14 @@ let colors = {
 
     'red': '#e67e6a', // dark-peach
     'red-light': '#ff8c76', // salmon
+    'red-transparent': 'rgba(255, 140, 118, 0.9)', // salmon-90
 
     'green': '#309673', // seaweed-green
 
     'blue-dark': '#0da5bf', // turquoise-blue-two
     'blue': '#0fc0df', // turquoise-blue
     'blue-light': '#88cdd9', // seafoam-blue
+    'blue-transparent': 'rgba(15, 192, 223, 0.9)', // turquoise-blue-90
 
 }
 
@@ -145,8 +147,23 @@ module.exports = {
             'Helvetica Neue',
             'sans-serif',
         ],
+        'condensed': [
+            'Roboto Condensed',
+            'Roboto',
+            'system-ui',
+            'BlinkMacSystemFont',
+            '-apple-system',
+            'Segoe UI',
+            'Oxygen',
+            'Ubuntu',
+            'Cantarell',
+            'Fira Sans',
+            'Droid Sans',
+            'Helvetica Neue',
+            'sans-serif',
+        ],
         'serif': [
-            'Constantia',
+            'Roboto Slab',
             'Lucida Bright',
             'Lucidabright',
             'Lucida Serif',

@@ -38,13 +38,10 @@ class DatabaseSeeder extends Seeder
         });
         $this->command->info('Tags created');
 
-        // Create three posts with distinct promotion status
-        collect(['promoted_first', 'promoted_second', 'promoted_third'])->each(function ($state) {
-            /** @var \App\Article $promotedArticle */
-            $promotedArticle = factory(\App\Article::class)->states($state)->create();
-            $promotedArticle->image()->associate(factory(\App\Image::class)->states('seedImages')->create());
-            $promotedArticle->save();
+        collect([1,2,3])->each(function ($state) use ($articles){
+            $articles->random()->update(['promoted' => $state]);
         });
+
         $this->command->info('Promoted Articles created');
     }
 }
