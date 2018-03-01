@@ -4,6 +4,8 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 
 /**
  * @property mixed $author
@@ -16,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed $image
  * @property bool $is_published
  */
-class Article extends Model
+class Article extends Model implements Feedable
 {
     protected $guarded = [];
     
@@ -32,7 +34,21 @@ class Article extends Model
             $builder->where('is_published', true);
         });
     }
+    public static function getFeedItems()
+    {
+        return Article::all();
+    }
     
+    public function toFeedItem()
+    {
+        return FeedItem::create()
+            ->id($this->id)
+            ->title($this->title)
+            ->summary($this->getExcerpt(40))
+            ->updated($this->updated_at)
+            ->link($this->path())
+            ->author($this->author->email);
+    }
     
     public function path()
     {

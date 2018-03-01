@@ -12,5 +12,5 @@
     @auth
         <div class="absolute pin-t pin-l bg-red-light shadow p-3"><a class="text-white" href="{{route('admin.dashboard')}}">@include('svg.cogs')</a></div>
     @endauth
-    <div class="absolute pin-t pin-r bg-red-light shadow p-3">@include('svg.rss')<p class="text-white text-xs tracking-xl">RSS</p></div>
+    <div class="absolute pin-t pin-r bg-red-light shadow p-3"><a href="{{route('feeds.main')}}">@include('svg.rss')<p class="text-white text-xs tracking-xl">RSS</p></a></div>
 </div>

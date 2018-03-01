@@ -26,6 +26,8 @@ Route::get('/privacy', function (){
     return view('privacy');
 })->name('privacy');
 
+Route::feeds();
+
 // Blog Routes
 Route::get('/blog', 'BlogController@index')->name('blog');
 Route::get('/blog/{slug}', 'BlogController@single')->name('articles.show');
