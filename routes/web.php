@@ -14,6 +14,7 @@
 // Front page
 Route::get('/', 'IndexController')->name('index');
 
+// Static Pages
 Route::get('/about-us', function () {
     return view('about-us');
 })->name('about-us');
@@ -26,7 +27,12 @@ Route::get('/privacy', function () {
     return view('privacy');
 })->name('privacy');
 
+// RSS Routes
 Route::feeds();
+
+// Contact Page
+Route::get('/contact', 'ContactController@show')->name('contact');
+Route::post('/contact', 'ContactController@store')->name('contact.store');
 
 // Blog Routes
 Route::get('/blog', 'BlogController@index')->name('blog');
