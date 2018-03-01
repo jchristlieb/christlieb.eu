@@ -23,7 +23,7 @@ class Article extends Model implements Feedable
     protected $guarded = [];
     
     protected $casts = [
-        'is_published' => 'boolean'
+        'is_published' => 'boolean',
     ];
     
     protected static function boot()
@@ -34,6 +34,7 @@ class Article extends Model implements Feedable
             $builder->where('is_published', true);
         });
     }
+    
     public static function getFeedItems()
     {
         return Article::all();
@@ -54,12 +55,12 @@ class Article extends Model implements Feedable
     {
         return "/blog/{$this->slug}";
     }
-
+    
     public function image()
     {
         return $this->belongsTo(Image::class);
     }
-
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -67,7 +68,7 @@ class Article extends Model implements Feedable
     {
         return $this->belongsToMany(Tag::class);
     }
-
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -75,24 +76,24 @@ class Article extends Model implements Feedable
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
+    
     public function getRouteKeyName()
     {
         return 'slug';
     }
-
+    
     public function getExcerpt($count = 50)
     {
         preg_match("/(?:\w+(?:\W+|$)){0,$count}/", $this->content, $matches);
-
-        return $matches[0].'...';
+        
+        return $matches[0] . '...';
     }
-
+    
     public function getContentAttribute($body)
     {
         return \Purify::clean($body);
     }
-
+    
     public function readingTime()
     {
         return ceil(str_word_count($this->content) / 250);
@@ -106,7 +107,7 @@ class Article extends Model implements Feedable
     {
         $this->update([
             'is_published' => !$dateTime ? true : false,
-            'published_at' => $dateTime ?? Carbon::now()
+            'published_at' => $dateTime ?? Carbon::now(),
         ]);
         
         return $this;

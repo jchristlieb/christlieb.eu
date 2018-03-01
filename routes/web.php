@@ -14,15 +14,15 @@
 // Front page
 Route::get('/', 'IndexController')->name('index');
 
-Route::get('/about-us', function (){
+Route::get('/about-us', function () {
     return view('about-us');
 })->name('about-us');
 
-Route::get('/legal-notice', function (){
+Route::get('/legal-notice', function () {
     return view('legal-notice');
 })->name('legal-notice');
 
-Route::get('/privacy', function (){
+Route::get('/privacy', function () {
     return view('privacy');
 })->name('privacy');
 
