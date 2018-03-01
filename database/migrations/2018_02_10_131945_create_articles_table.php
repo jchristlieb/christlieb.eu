@@ -21,6 +21,8 @@ class CreateArticlesTable extends Migration
             $table->text('content');
             $table->unsignedInteger('user_id');
             $table->integer('promoted')->nullable()->unique();
+            $table->boolean('is_published')->default(false);
+            $table->timestamp('published_at')->nullable()->index();
             $table->timestamps();
         });
     }

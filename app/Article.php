@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -13,10 +14,25 @@ use Illuminate\Database\Eloquent\Model;
  * @property string slug
  * @property string content
  * @property mixed $image
+ * @property bool $is_published
  */
 class Article extends Model
 {
     protected $guarded = [];
+    
+    protected $casts = [
+        'is_published' => 'boolean'
+    ];
+    
+    protected static function boot()
+    {
+        parent::boot();
+        
+        static::addGlobalScope('published', function ($builder) {
+            $builder->where('is_published', true);
+        });
+    }
+    
     
     public function path()
     {
@@ -64,5 +80,27 @@ class Article extends Model
     public function readingTime()
     {
         return ceil(str_word_count($this->content) / 250);
+    }
+    
+    /**
+     * @param Carbon|null $dateTime
+     * @return $this
+     */
+    public function publish(Carbon $dateTime = null)
+    {
+        $this->update([
+            'is_published' => !$dateTime ? true : false,
+            'published_at' => $dateTime ?? Carbon::now()
+        ]);
+        
+        return $this;
+    }
+    
+    /**
+     * Get a new query builder that includes archives.
+     */
+    public static function withDrafts()
+    {
+        return (new static)->newQueryWithoutScope('published');
     }
 }

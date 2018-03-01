@@ -15,6 +15,12 @@ $factory->define(\App\Article::class, function (Faker $faker) {
     ];
 });
 
+$factory->state(\App\Article::class, 'unpublished', function (Faker $faker) {
+    return [
+        'is_published' => false,
+    ];
+});
+
 $factory->state(\App\Article::class, 'promoted_first', function (Faker $faker) {
     return [
        'promoted' => 1,

@@ -6,7 +6,7 @@
     </div>
     <div class="flex items-stretch pt-8">
         <div class="self-center border-t-2 border-slate flex-1">&nbsp;</div>
-        <div class="flex-1 text-center"><a class="leading-xl" href="{{ url('/') }}"><img src="{{asset('images/logo.png')}}" alt="logo" height="50"/></a></div>
+        <div class="flex-1 text-center -mt-2"><a class="leading-xl" href="{{ url('/') }}">@include('svg.logo')</a></div>
         <div class="self-center border-t-2 border-slate flex-1">&nbsp;</div>
     </div>
     @auth
