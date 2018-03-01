@@ -55,7 +55,7 @@
                     </li>
                 </ul>
             </aside>
-            <main class="p-3 w-2/3">
+            <main class="py-8 w-3/4">
                 @yield('content')
             </main>
         </div>

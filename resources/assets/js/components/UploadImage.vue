@@ -1,12 +1,13 @@
 <template>
     <div class="profile-image">
         <form @submit.prevent="uploadImage" enctype="multipart/form-data">
-            <label for="inputImage">
-                <img class="img-circle" :src="image">
+            <img class="img-circle" :src="image">
+            <label for="inputImage" v-if="!image">
+                <span class="btn">Choose Image</span>
             </label>
-            <input class="file-input" id="inputImage" type="file" @change="onFileChange">
+            <input class="hidden" id="inputImage" type="file" @change="onFileChange">
             <div class="form-group">
-                <button type="submit" class="text-white bg-blue-light rounded py-2 px-4" v-if="isChanged">Upload</button>
+                <button type="submit" class="btn" v-if="isChanged">Upload</button>
             </div>
         </form>
     </div>
@@ -46,12 +47,11 @@
                 this.image = '';
             },
             uploadImage() {
-                console.log('foo')
                 const data = new FormData();
                 data.append('image', this.file);
                 axios.post('/admin/images', data)
                     .then(response => {
-                        this.image = response.data.path;
+                        this.image = false;
                         this.$emit('upload', response.data);
                         this.isChanged = false;
                     })
