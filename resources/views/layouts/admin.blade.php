@@ -73,5 +73,6 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 @include('flash::message')
+@yield('javascript')
 </body>
 </html>

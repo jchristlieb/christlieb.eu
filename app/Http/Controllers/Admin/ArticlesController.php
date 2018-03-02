@@ -88,7 +88,7 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $article = Article::findOrFail($id);
+        $article = Article::withDrafts()->findOrFail($id);
         $article->update($request->validate([
             'title' => ['required', Rule::unique('articles')->ignore($article->id)],
             'content' => ['required'],

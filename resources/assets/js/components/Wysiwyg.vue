@@ -90,6 +90,7 @@
             };
         },
         mounted(){
+            require('prismjs');
             this.content = this.value;
             this.init();
         },
@@ -169,8 +170,3 @@
         }
     }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>

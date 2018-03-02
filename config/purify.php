@@ -67,7 +67,7 @@ return [
         |
         */
 
-        'HTML.Allowed' => 'blockquote,div,pre,code,h1,h2,h3,h4,h5,h6,b,strong,i,em,a[href|title],ul,ol,li,p[style],br,span,img[width|height|alt|src]',
+        'HTML.Allowed' => 'blockquote,div,pre[class],code,h1,h2,h3,h4,h5,h6,b,strong,i,em,a[href|title],ul,ol,li,p[style],br,span,img[width|height|alt|src]',
 
         /*
         |--------------------------------------------------------------------------
@@ -98,7 +98,7 @@ return [
         |
         */
 
-        'CSS.AllowedProperties' => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,color,background-color,text-align',
+        'CSS.AllowedProperties' => 'class,font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,color,background-color,text-align',
 
         /*
         |--------------------------------------------------------------------------

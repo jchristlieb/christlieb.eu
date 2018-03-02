@@ -24,6 +24,7 @@
         "laravel-mix": "^2.0",
         "laravel-mix-purgecss": "^1.0.5",
         "lodash": "^4.17.4",
+        "prismjs": "^1.11.0",
         "tailwindcss": "^0.4.1",
         "tinymce": "^4.7.9",
         "vue": "^2.5.7",
