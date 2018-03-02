@@ -53,6 +53,12 @@
                         </div>
                         <a class="text-grey-dark text-sm" href="{{route('admin.images.index')}}">Images</a>
                     </li>
+                    <li class="mb-6 flex">
+                        <div class="mr-3 text-grey-dark">
+                            @include('svg.user-circle', ['class' => 'fill-current h-4 w-4'])
+                        </div>
+                        <a class="text-grey-dark text-sm" href="{{route('admin.profile.show')}}">Profile</a>
+                    </li>
                 </ul>
             </aside>
             <main class="py-8 w-3/4">

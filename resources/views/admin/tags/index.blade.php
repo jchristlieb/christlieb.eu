@@ -4,31 +4,27 @@
 
 @section('content')
 
-    <div class="card">
-        <div class="card-header">
-            <h3>Tags</h3>
-        </div>
-        <table class="table">
-            <thead>
+    <h1 class="font-condensed font-bold text-grey-dark text-5xl mb-4">Tags</h1>
+    <table class="mb-4">
+        <thead>
+        <tr>
+            <th class="text-left">Name</th>
+            <th width="150px">Article Count</th>
+            <th width="100px">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($tags as $tag)
             <tr>
-                <th>Name</th>
-                <th width="150px">Article Count</th>
-                <th width="100px">Actions</th>
+                <td><a href="{{route('admin.tags.show', $tag->id)}}">{{$tag->name}}</a></td>
+                <td class="text-center">{{$tag->articles_count}}</td>
+                <td class="text-center">...</td>
             </tr>
-            </thead>
-            <tbody>
-            @foreach($tags as $tag)
-                <tr>
-                    <td><a href="{{route('admin.tags.show', $tag->id)}}">{{$tag->name}}</a></td>
-                    <td>{{$tag->articles_count}}</td>
-                    <td>...</td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-        <div class="card-body">
-            {{$tags->links()}}
-        </div>
+        @endforeach
+        </tbody>
+    </table>
+    <div class="card-body">
+        {{$tags->links()}}
     </div>
 
 @endsection

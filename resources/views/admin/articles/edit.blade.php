@@ -6,7 +6,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h3>Edit Article</h3>
+            <h1 class="font-condensed font-bold text-grey-dark text-5xl mb-4">Edit Article</h1>
         </div>
         <div class="card-body">
             <article-form url="{{route('admin.articles.update',$article->id)}}" data-article="{{$article->toJson()}}"></article-form>

@@ -32,3 +32,7 @@ Route::delete('/tags/{tagId}/articles/{articleId}', 'TagsController@deleteArticl
 // Image Routes
 Route::get('/images', 'ImagesController@index')->name('admin.images.index');
 Route::post('/images', 'ImagesController@store')->name('admin.images.store');
+
+// Profile Routes
+Route::get('/profile', 'ProfileController@show')->name('admin.profile.show');
+Route::patch('/profile', 'ProfileController@update')->name('admin.images.update');
