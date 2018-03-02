@@ -13,41 +13,19 @@ a {
     @apply .no-underline .text-blue;
 }
 
-table {
-    @apply .w-full;
-    border-collapse: collapse;
-    td, th {
-        @apply .p-3;
-    }
-    thead {
-        tr {
-            @apply .border-b-2 .border-grey-light;
-        }
-    }
-    tbody {
-        tr {
-            @apply .border-b .border-grey-light;
-        }
-    }
-}
+// Utilities
+@import "utilities/animation";
 
-.btn {
-    @apply .text-white .py-2 .px-4 .rounded .bg-blue;
-}
+//Components
+@import "components/button";
+@import "components/form";
+@import "components/pagination";
+@import "components/tags-input";
+@import "components/table";
 
-.spinning {
-    animation: spinning 2s infinite linear;
-}
 
-.fa-pulse {
-    animation: spinning 1s infinite steps(8);
-}
 
-@keyframes spinning {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
+
+
+
+

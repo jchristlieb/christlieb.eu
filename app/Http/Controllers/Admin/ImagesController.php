@@ -10,7 +10,7 @@ class ImagesController extends Controller
 {
     public function index(Request $request)
     {
-        $images = Image::all();
+        $images = Image::latest()->get();
 
         if ($request->wantsJson()) {
             return response()->json($images);

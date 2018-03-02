@@ -1,0 +1,17 @@
+table {
+    @apply .w-full;
+    border-collapse: collapse;
+    td, th {
+        @apply .p-3;
+    }
+    thead {
+        tr {
+            @apply .border-b-2 .border-grey-light;
+        }
+    }
+    tbody {
+        tr {
+            @apply .border-b .border-grey-light;
+        }
+    }
+}

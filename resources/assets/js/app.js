@@ -83,8 +83,6 @@ Vue.component('article-form', require('./components/ArticleForm.vue'));
 Vue.component('tags-input', require('./components/TagsInput.vue'));
 Vue.component('wysiwyg', require('./components/Wysiwyg.vue'));
 Vue.component('images-component', require('./components/ImagesComponent.vue'));
-Vue.component('add-image', require('./components/AddImage.vue'));
-Vue.component('upload-image', require('./components/UploadImage.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
 
 import ClickOutside from './directives/click-outside';
