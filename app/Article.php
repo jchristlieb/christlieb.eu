@@ -80,7 +80,7 @@ class Article extends Model implements Feedable
     {
         return $this->belongsToMany(Tag::class);
     }
-    
+
     /**
      * Sync tag relationships and add new tags as needed.
      *
@@ -93,13 +93,12 @@ class Article extends Model implements Feedable
             $this->tags()->sync(
                 Tag::whereIn('name', $tags)->pluck('id')->all()
             );
-            
+
             return;
         }
         $this->tags()->detach();
     }
-    
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

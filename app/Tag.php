@@ -27,7 +27,7 @@ class Tag extends Model
     {
         return $this->belongsToMany(Article::class);
     }
-    
+
     /**
      * Add tags from the list.
      *
