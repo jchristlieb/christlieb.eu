@@ -27,4 +27,23 @@ class Tag extends Model
     {
         return $this->belongsToMany(Article::class);
     }
+    
+    /**
+     * Add tags from the list.
+     *
+     * @param array $tags List of tags to check/add
+     */
+    public static function addNeededTags(array $tags)
+    {
+        if (count($tags) === 0) {
+            return;
+        }
+        $found = static::whereIn('name', $tags)->pluck('name')->all();
+        foreach (array_diff($tags, $found) as $tag) {
+            static::create([
+                'name' => $tag,
+                'slug' => str_slug($tag),
+            ]);
+        }
+    }
 }

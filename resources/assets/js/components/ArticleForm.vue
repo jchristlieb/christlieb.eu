@@ -4,7 +4,7 @@
             <button type="button" class="btn" @click="imageModal = true">Add Image</button>
             <!-- Modal -->
             <modal v-if="imageModal" @close="imageModal = false">
-                <images-component with-save="true" @save="fillImage"/>
+                <images-component :with-save="true" @save="fillImage"/>
             </modal>
         </div>
         <img v-if="article.image_id" :src="'/storage/' + image.path"/>
