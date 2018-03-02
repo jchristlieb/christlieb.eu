@@ -19,17 +19,17 @@ class ArticlesController extends Controller
     public function index()
     {
         $articles = Article::latest()->paginate(10);
-        
+
         return view('admin.articles.index', compact('articles'));
     }
-    
+
     public function show($id)
     {
         $article = Article::with('tags', 'image')->find($id);
-        
+
         return view('admin.articles.show', compact('article'));
     }
-    
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -37,7 +37,7 @@ class ArticlesController extends Controller
     {
         return view('admin.articles.create');
     }
-    
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
@@ -51,37 +51,37 @@ class ArticlesController extends Controller
         $article = new Article($data);
         $article->slug = str_slug($request->input('title'));
         $article->author()->associate(auth()->user());
-        
+
         if ($imageId = $request->input('image_id')) {
             $article->image_id = $imageId;
         }
         $article->save();
-        
+
         if ($request->input('tags')) {
             foreach ($request->input('tags') as $tag) {
                 $tagModel = Tag::firstOrNew(['name' => $tag['name']]);
                 $article->tags()->save($tagModel);
             }
         }
-        
+
         if ($request->wantsJson()) {
             return response()->json($article);
         }
-        
+
         flash('Successfully created new Article')->success();
-        
+
         return redirect($article->path());
     }
-    
+
     public function edit($id)
     {
         $article = Article::with('image', 'tags')->findOrFail($id);
-        
+
         $article->tags = $article->tags->pluck('name');
-        
+
         return view('admin.articles.edit', compact('article'));
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -96,24 +96,24 @@ class ArticlesController extends Controller
             'title' => ['required', Rule::unique('articles')->ignore($article->id)],
             'content' => ['required'],
         ]));
-        
+
         $tags = collect();
         foreach ($request->input('tags') as $tag) {
             $tagModel = Tag::firstOrNew(['name' => $tag['name']]);
             $tags->push($tagModel);
         }
-        /** @var $article Article */
-       
+        /* @var $article Article */
+
         $article->tags()->saveMany($tags);
         if ($request->wantsJson()) {
             return response()->json($article);
         }
-        
+
         flash('Successfully updated Article')->success();
-        
+
         return redirect(route('admin.articles.show', $article->id));
     }
-    
+
     /**
      * @param $id int
      * @return \Illuminate\Http\RedirectResponse
@@ -121,9 +121,9 @@ class ArticlesController extends Controller
     public function destroy($id)
     {
         Article::findOrFail($id)->delete();
-        
+
         flash('Successfully deleted Article')->success();
-        
+
         return redirect()->back();
     }
 }
