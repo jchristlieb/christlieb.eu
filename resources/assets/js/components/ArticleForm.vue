@@ -33,14 +33,17 @@
                 <strong>{{ errors.content[0] }}</strong>
             </span>
         </div>
-        <div class="form-group pt-4">
+        <div class="form-group my-4">
             <div class="mb-4">
                 <label>Tags</label>
             </div>
             <tags-input id="tags" v-model="article.tags"></tags-input>
         </div>
-        <div class="">
-            <datepicker v-model="article.date"></datepicker>
+        <div>
+            <div class="mb-4">
+                <label>Publish at</label>
+            </div>
+            <datepicker @selected="updatePublishedAt" :disabled="article.is_published"  :inline="true" :value="article.published_at"></datepicker>
         </div>
         <div class="text-right">
             <button type="submit" class="btn btn-primary">save</button>
@@ -50,11 +53,11 @@
 
 <script>
     import Datepicker from 'vuejs-datepicker';
-    import Wysiwyg from "./Wysiwyg";
+    // import Wysiwyg from "./Wysiwyg";
 
     export default {
         components: {
-            Wysiwyg,
+            Wysiwyg: () => import('./Wysiwyg'),
             Datepicker
         },
         props: ['url', 'dataArticle'],
@@ -66,7 +69,7 @@
                     content: '',
                     tags: [],
                     image_id: false,
-                    published_at: false
+                    published_at: new Date()
                 },
                 imageModal: false,
                 image: {},
@@ -109,6 +112,23 @@
                 this.imageModal = false;
                 this.image = image;
                 this.article.image_id = image.id;
+            },
+            updatePublishedAt(date){
+                let dd = date.getDate();
+                let mm = date.getMonth()+1; //January is 0!
+                let yyyy = date.getFullYear();
+
+                if(dd<10) {
+                    dd = '0'+dd
+                }
+
+                if(mm<10) {
+                    mm = '0'+mm
+                }
+
+                let formattedDate = yyyy + '-' + mm + '-' + dd;
+                console.log(formattedDate);
+                this.article.published_at = formattedDate;
             }
         }
     }

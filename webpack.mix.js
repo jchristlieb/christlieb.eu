@@ -11,6 +11,12 @@ require('laravel-mix-purgecss');
  | file for the application as well as bundling up all the JS files.
  |
  */
+mix.webpackConfig({
+    output: {
+        publicPath: '/',
+        chunkFilename: 'js/[name].[chunkhash].js',
+    },
+});
 
 mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/app.scss', 'public/css')
