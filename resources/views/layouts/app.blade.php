@@ -11,15 +11,7 @@
     <title>{{ config('app.name', 'christlieb.eu') . ' | ' }}@yield('title', 'Home')</title>
 
     <!-- Styles -->
-    @if(config('app.env') == 'production')
-        <style>
-            @php
-                include(public_path('css'). '/app.css')
-            @endphp
-        </style>
-    @else
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @endif
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="font-sans">
 <div id="app">
