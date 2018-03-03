@@ -46,7 +46,7 @@ class ArticlesController extends Controller
         $data = $request->validate([
             'title' => ['required', Rule::unique('articles')],
             'content' => ['required'],
-            'published_at' => 'date|date_format:Y-m-d|after:today'
+            'published_at' => 'date|date_format:Y-m-d|after:today',
         ]);
         $article = new Article($data);
         $article->slug = str_slug($request->input('title'));
