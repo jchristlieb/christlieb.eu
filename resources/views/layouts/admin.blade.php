@@ -25,37 +25,37 @@
                 <ul class="list-reset">
                     <li class="mb-6 flex">
                         <div class="mr-3 text-grey-dark">
-                            @include('svg.cogs', ['class' => 'fill-current h-4 w-4'])
+                            @svg('solid.cogs', 'fill-current h-4 w-4')
                         </div>
                         <a class="text-grey-dark text-sm" href="{{route('admin.dashboard')}}">Dashboard</a>
                     </li>
                     <li class="mb-6 flex">
                         <div class="mr-3 text-grey-dark">
-                            @include('svg.pencil-alt', ['class' => 'fill-current h-4 w-4'])
+                            @svg('solid.pencil-alt', 'fill-current h-4 w-4')
                         </div>
                         <a class="text-grey-dark text-sm" href="{{route('admin.articles.create')}}">New Article</a>
                     </li>
                     <li class="mb-6 flex">
                         <div class="mr-3 text-grey-dark">
-                            @include('svg.newspaper', ['class' => 'fill-current h-4 w-4'])
+                            @svg('solid.newspaper', 'fill-current h-4 w-4')
                         </div>
                         <a class="text-grey-dark text-sm" href="{{route('admin.articles.index')}}">Articles</a>
                     </li>
                     <li class="mb-6 flex">
                         <div class="mr-3 text-grey-dark">
-                            @include('svg.tags', ['class' => 'fill-current h-4 w-4'])
+                            @svg('solid.tags', 'fill-current h-4 w-4')
                         </div>
                         <a class="text-grey-dark text-sm" href="{{route('admin.tags.index')}}">Tags</a>
                     </li>
                     <li class="mb-6 flex">
                         <div class="mr-3 text-grey-dark">
-                            @include('svg.images', ['class' => 'fill-current h-4 w-4'])
+                            @svg('solid.images', 'fill-current h-4 w-4')
                         </div>
                         <a class="text-grey-dark text-sm" href="{{route('admin.images.index')}}">Images</a>
                     </li>
                     <li class="mb-6 flex">
                         <div class="mr-3 text-grey-dark">
-                            @include('svg.user-circle', ['class' => 'fill-current h-4 w-4'])
+                            @svg('solid.user-circle', 'fill-current h-4 w-4')
                         </div>
                         <a class="text-grey-dark text-sm" href="{{route('admin.profile.show')}}">Profile</a>
                     </li>

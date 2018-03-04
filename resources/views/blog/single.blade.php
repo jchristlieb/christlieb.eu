@@ -9,7 +9,7 @@
             <div class="fixed pin-l pin-t h-full ">
                 <div class="flex items-center h-full">
                     <div class="p-4 bg-grey-light self-center">
-                        <a href="{{$newerArticle->path()}}">@include('svg.arrow-left', ['class' => 'fill-current h-8 w-8'])</a></div>
+                        <a href="{{$newerArticle->path()}}">@svg('light.arrow-left', 'fill-current h-8 w-8')</a></div>
                 </div>
             </div>
         @endif
@@ -18,7 +18,7 @@
             <div class="fixed pin-r pin-t h-full flex content-center flex-wrap">
                 <div class="flex items-center h-full">
                     <div class="p-4 bg-grey-light">
-                        <a href="{{$olderArticle->path()}}" >@include('svg.arrow-right', ['class' => 'fill-current h-8 w-8'])</a>
+                        <a href="{{$olderArticle->path()}}" >@svg('light.arrow-right', 'fill-current h-8 w-8')</a>
                     </div>
                 </div>
             </div>
@@ -31,14 +31,15 @@
                             <div class="text-grey">{{$article->published_at->formatLocalized('%B %d,  %Y')}}</div>
                             <div class="flex text-grey">
                                 <div class="pr-1">
-                                    @include('svg.clock', ['class' => 'fill-current h-4 w-4'])
+                                    @svg('regular.clock', 'fill-current h-4 w-4')
                                 </div>
                                 <div class="font-bold tracking-wide text-grey uppercase">
                                     {{$article->readingTime() }} min read&nbsp;&nbsp;|&nbsp;&nbsp;
                                 </div>
                                 <div class="text-blue flex">
                                     <div class="pr-1">
-                                        @include('svg.comment', ['class' => 'fill-current h-4 w-4'])</div>
+                                        @svg('regular.comment','fill-current h-4 w-4')
+                                    </div>
                                     <div class="font-bold tracking-wide uppercase">
                                         <a href="#">2 comments</a>
                                     </div>

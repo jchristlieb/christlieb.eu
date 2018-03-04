@@ -11,6 +11,7 @@
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
+        "nothingworks/blade-svg": "^0.2.2",
         "spatie/laravel-feed": "^2.0",
         "stevebauman/purify": "^2.0"
     },
