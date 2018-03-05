@@ -28,12 +28,12 @@ class Tag extends Model
     {
         return $this->belongsToMany(Article::class);
     }
-    
+
     public function image()
     {
         return $this->belongsTo(Image::class);
     }
-    
+
     /**
      * Add tags from the list.
      *

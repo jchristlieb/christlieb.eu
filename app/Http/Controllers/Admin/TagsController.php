@@ -27,7 +27,7 @@ class TagsController extends Controller
         $tag = Tag::findOrFail($id);
         $tag->update(request()->validate([
             'name' => ['required', Rule::unique('tags')->ignore($tag->id)],
-            'image_id' => 'exists:images,id'
+            'image_id' => 'exists:images,id',
         ]));
 
         flash('Successfully updated Tag')->success();

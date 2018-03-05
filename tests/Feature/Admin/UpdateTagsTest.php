@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Image;
 use App\Tag;
+use App\Image;
 use App\Article;
-use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UpdateTagsTest extends TestCase
@@ -55,33 +55,33 @@ class UpdateTagsTest extends TestCase
 
         $response->assertSessionHasErrors('name');
     }
-    
+
     /** @test */
     public function an_image_can_be_added_to_a_tag()
     {
         Storage::fake();
         $tag = factory(Tag::class)->create();
         $image = factory(Image::class)->create();
-        
+
         $this->patch("/admin/tags/{$tag->id}", [
             'name' => 'test',
             'image_id' => $image->id,
         ]);
-        
+
         $this->assertInstanceOf(Image::class, $tag->fresh()->image);
     }
-    
+
     /** @test */
     public function the_image_must_be_existent()
     {
         Storage::fake();
         $tag = factory(Tag::class)->create();
-        
+
         $response = $this->patch("/admin/tags/{$tag->id}", [
             'name' => 'test',
             'image_id' => 1,
         ]);
-        
+
         $response->assertSessionHasErrors('image_id');
     }
 }
