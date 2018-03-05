@@ -1,6 +1,6 @@
 import {shallow} from '@vue/test-utils';
 import UpdateTagComponent from '../../resources/assets/js/components/UpdateTagComponent.vue';
-
+const flash = jest.fn();
 describe('UpdateTagComponent', () => {
     let wrapper;
 
@@ -13,16 +13,6 @@ describe('UpdateTagComponent', () => {
         });
         jest.resetModules();
         jest.clearAllMocks();
-    });
-
-    it('can toggle edit', () => {
-        expect(wrapper.vm.edit).toBe(false);
-        expect(wrapper.find('input').exists()).toBe(false);
-
-        wrapper.find('button').trigger('click');
-
-        expect(wrapper.vm.edit).toBe(true);
-        expect(wrapper.find('input').exists()).toBe(true);
     });
 
     it('can update the tag', async () => {
@@ -38,7 +28,7 @@ describe('UpdateTagComponent', () => {
         expect(wrapper.vm.patch).toBeCalledWith('/admin/tags/1', {name: 'new name'})
     });
 
-    it('can update the tag', async () => {
+    it('wont update on error', async () => {
         wrapper.vm.patch = jest.fn().mockImplementation(() => {
             return Promise.reject({
                 response:{
