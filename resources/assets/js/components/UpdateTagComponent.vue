@@ -1,18 +1,27 @@
 <template>
     <div class="mb-5">
+        <div v-if="edit" class="mb-4">
+            <button type="button" class="btn" @click="imageModal = true">Add Image</button>
+            <!-- Modal -->
+            <modal v-if="imageModal" @close="imageModal = false">
+                <images-component :with-save="true" @save="fillImage"/>
+            </modal>
+        </div>
+        <img v-if="tag.image_id" :src="imagePath"/>
         <p v-if="!edit">{{tag.name}}</p>
         <div class="form-group" v-else="">
-            <input id="tag-input" class="form-control" :class="{'is-invalid': errors.name}" v-model="tag.name"/>
-            <div v-if="errors.name" class="invalid-feedback">
+            <input id="tag-input" class="field" :class="{'border-red': errors.name}" v-model="tag.name"/>
+            <div v-if="errors.name" class="text-red">
                 {{errors.name[0]}}
             </div>
         </div>
 
-        <button class="btn btn-primary" @click="toggleEdit">
-            <i :class="{fal:true,'fa-edit': !this.edit, 'fa-times': this.edit}"></i>
+        <button class="btn" @click="toggleEdit">
+            <span v-if="!edit">Edit</span>
+            <span v-else>Cancel</span>
         </button>
-        <button v-if="edit" class="btn btn-primary" @click="update">
-            <i class="fal fa-save"></i>
+        <button v-if="edit" class="btn" @click="update">
+            <span>Save</span>
         </button>
     </div>
 </template>
@@ -26,8 +35,18 @@
             return {
                 tag: JSON.parse(this.dataTag),
                 edit: false,
-                errors: false
+                errors: false,
+                imageModal: false,
+                image: {}
             }
+        },
+        computed: {
+          imagePath(){
+              if(this.image.path){
+                  return '/storage/' + this.image.path;
+              }
+              return '/storage/' + this.tag.image.path;
+          }
         },
         methods: {
             update() {
@@ -44,6 +63,11 @@
                     this.errors = error.response.data.errors;
                     flash('Error while updating Tag', 'warning');
                 })
+            },
+            fillImage(image) {
+                this.imageModal = false;
+                this.image = image;
+                this.tag.image_id = image.id;
             },
             patch(url, tag) {
                 return axios.patch(url, tag)

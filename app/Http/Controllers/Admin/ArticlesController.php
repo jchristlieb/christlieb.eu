@@ -47,6 +47,7 @@ class ArticlesController extends Controller
             'title' => ['required', Rule::unique('articles')],
             'content' => ['required'],
             'published_at' => 'date|date_format:Y-m-d|after:today',
+            'image_id' => 'exists:images,id'
         ]);
         $article = new Article($data);
         $article->slug = str_slug($request->input('title'));
@@ -92,6 +93,7 @@ class ArticlesController extends Controller
         $article->update($request->validate([
             'title' => ['required', Rule::unique('articles')->ignore($article->id)],
             'content' => ['required'],
+            'image_id' => 'exists:images,id'
         ]));
 
         $tags = collect($request->input('tags', []))->pluck('name')->toArray();

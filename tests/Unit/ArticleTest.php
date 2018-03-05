@@ -103,4 +103,26 @@ class ArticleTest extends TestCase
 
         $this->assertCount(10, Article::withDrafts()->get());
     }
+    
+    /** @test */
+    public function it_can_get_one_newer_article()
+    {
+        factory(Article::class, 30)->create();
+        $article = Article::find(15);
+        
+        $newerArticle = $article->newerArticle();
+        
+        $this->assertTrue($newerArticle->published_at->gt($article->published_at));
+    }
+    
+    /** @test */
+    public function it_can_get_one_older_article()
+    {
+        factory(Article::class, 30)->create();
+        $article = Article::find(15);
+        
+        $olderArticle = $article->olderArticle();
+        
+        $this->assertTrue($article->published_at->gt($olderArticle->published_at));
+    }
 }

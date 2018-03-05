@@ -17,7 +17,7 @@ class TagsController extends Controller
 
     public function show($id)
     {
-        $tag = Tag::with('articles')->find($id);
+        $tag = Tag::with('articles', 'image')->find($id);
 
         return view('admin.tags.show', compact('tag'));
     }
@@ -27,6 +27,7 @@ class TagsController extends Controller
         $tag = Tag::findOrFail($id);
         $tag->update(request()->validate([
             'name' => ['required', Rule::unique('tags')->ignore($tag->id)],
+            'image_id' => 'exists:images,id'
         ]));
 
         flash('Successfully updated Tag')->success();
