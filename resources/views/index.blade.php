@@ -2,13 +2,13 @@
 
 @section('title',  'Welcome')
 @section('content')
+    <main class="px-4">
+        <div class="flex flex-wrap -mx-4">
+            @foreach($promotedArticles as $article)
 
-    <main class="flex flex-wrap -mx-4">
-        @foreach($promotedArticles as $article)
+                <div class="mb-4 px-4 w-full{{ $loop->first ?'' : ' md:w-1/2' }}">
 
-            <div class="mb-4 px-4{{ $loop->first ?' w-full' : ' w-1/2' }}">
-
-                <article class="relative">
+                    <article class="relative overflow-hidden">
                         @if($article->image)
                             <img src="{{Storage::url($article->image->path)}}" class="w-full block"/>
                         @endif
@@ -17,7 +17,7 @@
                                 <h2><a class="text-4xl text-grey-lightest font-condensed"
                                        href="{{$article->path()}}">{{$article->title}}</a>
                                 </h2>
-                                <p class="text-grey-light font-serif">{{$article->getExcerpt(20)}}</p>
+                                <p class="text-grey-light font-serif hidden md:block">{{$article->getExcerpt(20)}}</p>
                             @else
                                 <h3>
                                     <a class="text-2xl text-grey-lightest font-condensed"
@@ -25,33 +25,36 @@
                                 </h3>
                             @endif
                         </div>
-                </article>
+                    </article>
 
-            </div>
+                </div>
 
-        @endforeach
+            @endforeach
 
+        </div>
     </main>
-
 
 @endsection
 
 @section('sidebar')
-    <div class="relative mb-4">
-        <img class="w-full block" src="http://lorempixel.com/380/260/technics/"/>
-        <div class="absolute pin bg-blue-transparent"></div>
-        <div class="absolute pin text-center flex justify-center">
-            <div class="self-center text-grey-lightest text-5xl font-condensed font-bold">PHP<p class="text-base">
-                    Featured Topic</p>
+    <div class="px-4">
+        <div class="relative mb-4">
+            <img class="w-full block" src="http://lorempixel.com/380/260/technics/"/>
+            <div class="absolute pin bg-blue-transparent"></div>
+            <div class="absolute pin text-center flex justify-center">
+                <div class="self-center text-grey-lightest text-5xl font-condensed font-bold">PHP<p class="text-base">
+                        Featured Topic</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="relative mb-4">
-        <img class="w-full block" src="http://lorempixel.com/380/260/technics/"/>
-        <div class="absolute pin bg-red-transparent opacity-75"></div>
-        <div class="absolute pin text-center flex justify-center">
-            <div class="self-center text-grey-lightest text-5xl font-condensed font-bold">Laravel<p class="text-base">
-                    Featured Topic</p>
+        <div class="relative mb-4">
+            <img class="w-full block" src="http://lorempixel.com/380/260/technics/"/>
+            <div class="absolute pin bg-red-transparent opacity-75"></div>
+            <div class="absolute pin text-center flex justify-center">
+                <div class="self-center text-grey-lightest text-5xl font-condensed font-bold">Laravel<p
+                            class="text-base">
+                        Featured Topic</p>
+                </div>
             </div>
         </div>
     </div>

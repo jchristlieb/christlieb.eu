@@ -6,7 +6,7 @@
     <div class="container py-4 mx-auto">
 
         <div class="flex -mx-2">
-            <main class="p-3 w-2/3 mx-auto">
+            <main class="p-3 md:w-2/3 mx-auto">
                 @foreach($articles as $article)
                     <article>
                         <header class="mb-4">

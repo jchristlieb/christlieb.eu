@@ -17,13 +17,13 @@
 <div id="app">
     <flash></flash>
     @include('partials.header')
-    <div class="container py-4 mx-auto">
+    <div class="container py-4 px-2 mx-auto">
 
-        <div class="flex -mx-2">
-            <main class="p-3 w-2/3">
+        <div class="flex flex-wrap -mx-2">
+            <main class="w-full md:w-2/3">
                 @yield('content')
             </main>
-            <aside class="p-3 w-1/3">
+            <aside class="w-full md:w-1/3">
                 @yield('sidebar')
             </aside>
         </div>

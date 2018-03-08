@@ -24,11 +24,11 @@
             </div>
         @endif
         <div class="flex -mx-2">
-            <main class="p-3 w-2/3 mx-auto">
+            <main class="p-3 md:w-2/3 mx-auto">
                 <article>
                     <header class="mb-4">
-                        <div class="flex justify-between mb-6">
-                            <div class="text-grey">{{$article->published_at->formatLocalized('%B %d,  %Y')}}</div>
+                        <div class="flex justify-between  mb-6">
+                            <div class="text-grey ">{{$article->published_at->formatLocalized('%B %d,  %Y')}}</div>
                             <div class="flex text-grey">
                                 <div class="pr-1">
                                     @svg('regular.clock', 'fill-current h-4 w-4')
