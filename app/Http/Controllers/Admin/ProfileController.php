@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProfileController extends Controller
 {
@@ -11,16 +11,16 @@ class ProfileController extends Controller
     {
         return view('admin.profile.show');
     }
-    
+
     public function update(Request $request)
     {
         $data = $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users'
+            'email' => 'required|email|unique:users',
         ]);
-        
+
         auth()->user()->update($data);
-        
+
         return response()->json(auth()->user());
     }
 }
