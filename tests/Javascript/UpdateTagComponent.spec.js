@@ -1,6 +1,7 @@
 import {shallow} from '@vue/test-utils';
+import flash from '../../resources/assets/js/services/flash';
+jest.mock('flash');
 import UpdateTagComponent from '../../resources/assets/js/components/UpdateTagComponent.vue';
-const flash = jest.fn();
 describe('UpdateTagComponent', () => {
     let wrapper;
 

@@ -43,7 +43,8 @@
             <div class="mb-4">
                 <label>Publish at</label>
             </div>
-            <datepicker @selected="updatePublishedAt" :disabled="article.is_published"  :inline="true" :value="article.published_at"></datepicker>
+            <datepicker @selected="updatePublishedAt" :disabled="article.is_published" :inline="true"
+                        :value="article.published_at"></datepicker>
         </div>
         <div class="text-right">
             <button type="submit" class="btn btn-primary">save</button>
@@ -53,7 +54,7 @@
 
 <script>
     import Datepicker from 'vuejs-datepicker';
-    // import Wysiwyg from "./Wysiwyg";
+    import flash from '../services/flash';
 
     export default {
         components: {
@@ -90,9 +91,9 @@
                     url: this.url,
                     data: this.article
                 }).then(response => {
-                    if(this.method === 'post'){
-                    }else{
-                    flash('Article updated', 'success');
+                    if (this.method === 'post') {
+                    } else {
+                        flash.success('Article updated');
                     }
                     this.clear();
                 })
@@ -113,17 +114,17 @@
                 this.image = image;
                 this.article.image_id = image.id;
             },
-            updatePublishedAt(date){
+            updatePublishedAt(date) {
                 let dd = date.getDate();
-                let mm = date.getMonth()+1; //January is 0!
+                let mm = date.getMonth() + 1; //January is 0!
                 let yyyy = date.getFullYear();
 
-                if(dd<10) {
-                    dd = '0'+dd
+                if (dd < 10) {
+                    dd = '0' + dd
                 }
 
-                if(mm<10) {
-                    mm = '0'+mm
+                if (mm < 10) {
+                    mm = '0' + mm
                 }
 
                 let formattedDate = yyyy + '-' + mm + '-' + dd;

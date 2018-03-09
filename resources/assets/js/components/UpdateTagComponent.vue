@@ -28,7 +28,7 @@
 
 <script>
     import axios from 'axios';
-
+    import flash from '../services/flash';
     export default {
         props: ['dataTag', 'url'],
         data() {
@@ -56,12 +56,12 @@
                     this.tag = response.data;
                     this.errors = false;
                     this.edit = false;
-                    flash('Tag updated', 'success');
+                    flash.success('Tag updated');
                 });
 
                 response.catch(error => {
                     this.errors = error.response.data.errors;
-                    flash('Error while updating Tag', 'warning');
+                    flash.warning('Error while updating Tag');
                 })
             },
             fillImage(image) {

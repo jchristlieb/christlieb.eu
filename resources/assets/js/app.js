@@ -54,20 +54,20 @@ if (token) {
 // });
 
 window.Vue = require('vue');
-
-/**
- * Our Vuejs event handler which we will be using for flash messaging
- * @type  {Vue}
- */
-window.events = new Vue();
-
-/**
- * Our Flash function which will be used to add new flash events to our event handler
- *
- */
-window.flash = function (message, type) {
-    window.events.$emit('flash', message, type);
-};
+//
+// /**
+//  * Our Vuejs event handler which we will be using for flash messaging
+//  * @type  {Vue}
+//  */
+// window.events = new Vue();
+//
+// /**
+//  * Our Flash function which will be used to add new flash events to our event handler
+//  *
+//  */
+// window.flash = function (message, type) {
+//     window.events.$emit('flash', message, type);
+// };
 
 
 /**
@@ -76,7 +76,7 @@ window.flash = function (message, type) {
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('flash', require('vue-flash'));
+Vue.component('flash', require('./components/Flash.vue'));
 Vue.component('tags-widget', require('./components/TagsWidget.vue'));
 Vue.component('update-tag', require('./components/UpdateTagComponent.vue'));
 Vue.component('article-form', require('./components/ArticleForm.vue'));
