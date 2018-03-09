@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Tag;
 
 /**
  * Class IndexController.
@@ -16,8 +17,10 @@ class IndexController extends Controller
      */
     public function __invoke()
     {
-        $promotedArticles = Article::whereNotNull('promoted')->with('author', 'tags')->get();
-
-        return view('index', compact('promotedArticles'));
+        $tags = Tag::withCount('articles')->with('image')->orderBy('articles_count', 'desc')->limit(2)->get();
+        
+        $promotedArticles = Article::whereNotNull('promoted')->with('author', 'tags', 'image')->get();
+        
+        return view('index', compact('promotedArticles', 'tags'));
     }
 }

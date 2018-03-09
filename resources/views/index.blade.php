@@ -38,24 +38,24 @@
 
 @section('sidebar')
     <div class="px-4">
-        <div class="relative mb-4">
-            <img class="w-full block" src="http://lorempixel.com/380/260/technics/"/>
-            <div class="absolute pin bg-blue-transparent"></div>
-            <div class="absolute pin text-center flex justify-center">
-                <div class="self-center text-grey-lightest text-5xl font-condensed font-bold">PHP<p class="text-base">
-                        Featured Topic</p>
-                </div>
+        @foreach($tags as $tag)
+            <div class="relative mb-4">
+                <a href="/tags/{{$tag->slug}}">
+                    @if($tag->image)
+                        <img class="w-full block"
+                             src="{{Storage::url($tag->image->path)}}"/>
+                    @else
+                        <img class="w-full block" src="https://lorempixel.com/400/200"/>
+                    @endif
+                    <div class="absolute pin bg-blue-transparent"></div>
+                    <div class="absolute pin text-center flex justify-center">
+                        <div class="self-center text-grey-lightest text-5xl font-condensed font-bold">{{$tag->name}}<p
+                                    class="text-base">
+                                Featured Topic</p>
+                        </div>
+                    </div>
+                </a>
             </div>
-        </div>
-        <div class="relative mb-4">
-            <img class="w-full block" src="http://lorempixel.com/380/260/technics/"/>
-            <div class="absolute pin bg-red-transparent opacity-75"></div>
-            <div class="absolute pin text-center flex justify-center">
-                <div class="self-center text-grey-lightest text-5xl font-condensed font-bold">Laravel<p
-                            class="text-base">
-                        Featured Topic</p>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 @endsection

@@ -27,10 +27,10 @@ class DatabaseSeeder extends Seeder
             $tags->push(factory(\App\Tag::class)->create([
                 'name' => $tag,
                 'slug' => $tag,
+                'image_id' => rand(1,3)
             ]));
         });
 
-        // Create comments for each post
         $articles->each(function ($article) use ($tags) {
             $article->tags()->saveMany($tags->random(rand(1, 4)));
             $article->image()->associate(factory(\App\Image::class)->states('seedImages')->create());
