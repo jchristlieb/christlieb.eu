@@ -11,7 +11,8 @@
     <title>{{ config('app.name', 'christlieb.eu') . ' | ' }}@yield('title', 'Home')</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto+Slab:400,700|Roboto:400,700" rel="stylesheet" lazyload>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" lazyload>
 </head>
 <body class="font-sans">
 <div id="app">
