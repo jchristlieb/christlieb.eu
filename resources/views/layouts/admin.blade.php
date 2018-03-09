@@ -17,7 +17,7 @@
             },
             timeout: 2000 // Set the timeout to two seconds
         };
-        (function(d) {
+        (function (d) {
             let wf = d.createElement('script'), s = d.scripts[0];
             wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
             wf.async = true;
@@ -25,8 +25,13 @@
         })(document);
     </script>
     <!-- Styles -->
-    {{--<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto+Slab:400,700|Roboto:400,700" rel="stylesheet" lazyload>--}}
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @if(config('app.env') == 'production')
+        <style>
+            {{ file_get_contents(public_path('css/app.css')) }}
+        </style>
+    @else
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @endif
 </head>
 
 <body class="font-sans">
