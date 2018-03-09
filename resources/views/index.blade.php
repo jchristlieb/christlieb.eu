@@ -10,7 +10,7 @@
 
                     <article class="relative overflow-hidden">
                         @if($article->image)
-                            <img src="{{Storage::url($article->image->path)}}" class="w-full block"/>
+                            <img src="{{Storage::url($article->image->path)}}" class="w-full block" alt="{{$article->image->alt}}"/>
                         @endif
                         <div class="absolute pin-l pin-b w-full bg-grey-transparent p-8">
                             @if($loop->first)
@@ -42,8 +42,7 @@
             <div class="relative mb-4">
                 <a href="/tags/{{$tag->slug}}">
                     @if($tag->image)
-                        <img class="w-full block"
-                             src="{{Storage::url($tag->image->path)}}"/>
+                        <img class="w-full block" src="{{Storage::url($tag->image->path)}}" alt="{{$tag->image->alt}}"/>
                     @else
                         <img class="w-full block" src="https://lorempixel.com/400/200"/>
                     @endif
