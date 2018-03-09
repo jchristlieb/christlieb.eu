@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             $tags->push(factory(\App\Tag::class)->create([
                 'name' => $tag,
                 'slug' => $tag,
-                'image_id' => rand(1,3)
+                'image_id' => rand(1, 3),
             ]));
         });
 
