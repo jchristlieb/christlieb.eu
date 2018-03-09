@@ -52,7 +52,9 @@
 </div>
 
 <!-- Scripts -->
-@include('partials.google-analytics')
+@if(!isset($_SERVER['HTTP_USER_AGENT']) || stripos($_SERVER['HTTP_USER_AGENT'], 'Speed Insights') === false)
+    @include('partials.google-analytics')
+@endif
 <script src="{{ asset('js/app.js') }}"></script>
 @include('flash::message')
 
