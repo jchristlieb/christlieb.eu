@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * @property mixed $articles
+ * @property mixed $image
  */
 class User extends Authenticatable
 {
@@ -18,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'image_id', 'description'
     ];
 
     /**
@@ -29,12 +30,26 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+    
+    protected static function boot()
+    {
+        parent::boot();
+        
+        static::addGlobalScope('with_image', function ($builder) {
+            $builder->with('image');
+        });
+    }
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function articles()
     {
         return $this->hasMany(Article::class, 'user_id');
+    }
+    
+    public function image()
+    {
+        return $this->belongsTo(Image::class);
     }
 }

@@ -18,6 +18,8 @@ class ProfileController extends Controller
         $data = $request->validate([
             'name' => 'required',
             'email' => ['required', 'email', Rule::unique('users')->ignore(auth()->user()->id)],
+            'image_id' => 'exists:images,id',
+            'description' => 'min:5'
         ]);
         
         auth()->user()->update($data);

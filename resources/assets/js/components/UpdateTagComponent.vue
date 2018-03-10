@@ -1,34 +1,40 @@
 <template>
-    <div class="mb-5">
-        <div v-if="edit" class="mb-4">
-            <button type="button" class="btn" @click="imageModal = true">Add Image</button>
-            <!-- Modal -->
-            <modal v-if="imageModal" @close="imageModal = false">
-                <images-component :with-save="true" @save="fillImage"/>
-            </modal>
-        </div>
-        <img v-if="tag.image_id" :src="imagePath"/>
-        <p v-if="!edit">{{tag.name}}</p>
-        <div class="form-group" v-else="">
-            <input id="tag-input" class="field" :class="{'border-red': errors.name}" v-model="tag.name"/>
-            <div v-if="errors.name" class="text-red">
-                {{errors.name[0]}}
-            </div>
-        </div>
+    <div>
+        <h1 class="font-condensed font-bold text-grey-dark text-5xl mb-4">Tag: {{tag.name}}</h1>
 
-        <button class="btn" @click="toggleEdit">
-            <span v-if="!edit">Edit</span>
-            <span v-else>Cancel</span>
-        </button>
-        <button v-if="edit" class="btn" @click="update">
-            <span>Save</span>
-        </button>
+        <div class="mb-5">
+            <div v-if="edit" class="mb-4">
+                <button type="button" class="btn" @click="imageModal = true">Add Image</button>
+                <!-- Modal -->
+                <modal v-if="imageModal" @close="imageModal = false">
+                    <images-component :with-save="true" @save="fillImage"/>
+                </modal>
+            </div>
+            <img v-if="tag.image_id" :src="imagePath"/>
+            <p v-if="!edit">{{tag.name}}</p>
+            <div class="form-group" v-else="">
+                <input id="tag-input" class="field" :class="{'border-red': errors.name}" v-model="tag.name"/>
+                <div v-if="errors.name" class="text-red">
+                    {{errors.name[0]}}
+                </div>
+            </div>
+
+            <button class="btn" @click="toggleEdit">
+                <span v-if="!edit">Edit</span>
+                <span v-else>Cancel</span>
+            </button>
+            <button v-if="edit" class="btn" @click="update">
+                <span>Save</span>
+            </button>
+        </div>
     </div>
+
 </template>
 
 <script>
     import axios from 'axios';
     import flash from '../services/flash';
+
     export default {
         props: ['dataTag', 'url'],
         data() {
@@ -41,12 +47,12 @@
             }
         },
         computed: {
-          imagePath(){
-              if(this.image.path){
-                  return '/storage/' + this.image.path;
-              }
-              return '/storage/' + this.tag.image.path;
-          }
+            imagePath() {
+                if (this.image.path) {
+                    return '/storage/' + this.image.path;
+                }
+                return '/storage/' + this.tag.image.path;
+            }
         },
         methods: {
             update() {
@@ -55,7 +61,7 @@
                 response.then(response => {
                     this.tag = response.data;
                     this.errors = false;
-                    this.edit = false;
+                    this.toggleEdit();
                     flash.success('Tag updated');
                 });
 

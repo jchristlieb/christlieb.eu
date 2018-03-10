@@ -3,5 +3,5 @@
 @section('title',  'Media')
 
 @section('content')
-    <profile user-data="{{auth()->user()}}"></profile>
+    <profile user-data="{{auth()->user()->load('image')}}"></profile>
 @endsection

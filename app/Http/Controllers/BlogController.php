@@ -25,7 +25,7 @@ class BlogController extends Controller
      */
     public function single($slug)
     {
-        $article = Article::where('slug', $slug)->first();
+        $article = Article::with('image', 'author.image')->where('slug', $slug)->first();
 
         return view('blog.single', compact('article'));
     }

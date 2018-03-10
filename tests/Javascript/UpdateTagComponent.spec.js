@@ -1,8 +1,8 @@
 import {shallow} from '@vue/test-utils';
 import flash from '../../resources/assets/js/services/flash';
-jest.mock('flash');
 import UpdateTagComponent from '../../resources/assets/js/components/UpdateTagComponent.vue';
 describe('UpdateTagComponent', () => {
+jest.mock('flash');
     let wrapper;
 
     beforeEach(() => {

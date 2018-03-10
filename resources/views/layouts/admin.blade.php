@@ -36,7 +36,9 @@
 
 <body class="font-sans">
 <div id="app">
-    <flash></flash>
+    {{--<flash></flash>--}}
+    @include('flash::message')
+
     @include('partials.header')
     <div class="container py-4 mx-auto">
 
@@ -92,7 +94,6 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
-@include('flash::message')
 @yield('javascript')
 </body>
 </html>

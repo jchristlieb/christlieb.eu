@@ -1,4 +1,4 @@
-import Vuew from 'vue';
+import Vue from 'vue';
 
 class Flash {
 

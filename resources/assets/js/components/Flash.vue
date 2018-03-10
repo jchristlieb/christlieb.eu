@@ -44,6 +44,10 @@
                     warning: 'fa-exclamation-circle',
                 })
             },
+            messages: {
+                type: Array,
+                default: []
+            }
         },
 
         data: () => ({
@@ -55,6 +59,11 @@
          * flash event from global event bus
          */
         created() {
+            if(this.messages.length > 0){
+                this.messages.forEach(message => {
+                    this.flash(message.message, message.level);
+                })
+            }
             flash.events.$on(
                 'flash', (message, type) => this.flash(message, type)
             );
