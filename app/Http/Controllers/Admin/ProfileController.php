@@ -19,7 +19,7 @@ class ProfileController extends Controller
             'name' => 'required',
             'email' => ['required', 'email', Rule::unique('users')->ignore(auth()->user()->id)],
             'image_id' => 'exists:images,id',
-            'description' => 'min:5'
+            'description' => 'min:5',
         ]);
 
         auth()->user()->update($data);

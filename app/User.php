@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'image_id', 'description'
+        'name', 'email', 'password', 'image_id', 'description',
     ];
 
     /**
@@ -30,16 +30,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    
+
     protected static function boot()
     {
         parent::boot();
-        
+
         static::addGlobalScope('with_image', function ($builder) {
             $builder->with('image');
         });
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -47,7 +47,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Article::class, 'user_id');
     }
-    
+
     public function image()
     {
         return $this->belongsTo(Image::class);

@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Image;
-use App\User;
 use Storage;
+use App\User;
+use App\Image;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -78,21 +78,21 @@ class UpdateProfileTest extends TestCase
 
         $response->assertSessionHasErrors('email');
     }
-    
+
     /** @test */
     public function a_user_can_add_a_description()
     {
         $this->actingAs($user = factory(User::class)->create());
-    
+
         $this->patch('/admin/profile', [
             'name' => 'updated name',
             'email' => 'john@example.com',
-            'description' => 'a test description'
+            'description' => 'a test description',
         ]);
-        
+
         $this->assertEquals('a test description', $user->fresh()->description);
     }
-    
+
     /** @test */
     public function a_user_can_add_an_image_to_his_profile()
     {
@@ -100,15 +100,14 @@ class UpdateProfileTest extends TestCase
         Storage::fake('public');
         $image = factory(Image::class)->create();
         $this->actingAs($user = factory(User::class)->create());
-    
+
         $this->patch('/admin/profile', [
             'name' => 'updated name',
             'email' => 'updated@email.com',
-            'image_id' => $image->id
+            'image_id' => $image->id,
         ]);
-        
+
         $user = User::with('image')->first();
         $this->assertInstanceOf(Image::class, $user->image);
     }
-    
 }
