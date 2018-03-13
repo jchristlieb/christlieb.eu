@@ -24,7 +24,7 @@
                                             @svg('regular.comment','fill-current h-4 w-4')
                                         </div>
                                         <div class="font-bold tracking-wide uppercase">
-                                            <a href="#">2 comments</a>
+                                            <a href="#">{{$article->comments->count()}} comments</a>
                                         </div>
                                     </div>
                                 </div>

@@ -13,11 +13,11 @@ class CommentsController extends Controller
            'name' => 'required',
            'content' => 'required'
         ]);
-        
+
         $article = Article::where('slug', $slug)->first();
         
         $article->comments()->create($commentData);
         
-        return back(201);
+        return redirect($article->path());
     }
 }

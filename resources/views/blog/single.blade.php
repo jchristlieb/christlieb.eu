@@ -65,16 +65,47 @@
                         {!! $article->content !!}
                     </div>
 
-                    <footer class="mb-8 flex border-t-2 border-slate pt-8">
-                        @if($article->author->image)
-                            <img class="h-32 w-32  rounded-full mr-8"
-                                 src="{{Storage::url($article->author->image->path)}}"
-                                 alt="{{$article->author->image->alt}}"/>
-                        @endif
-                        <div class="self-center">
-                            <h3>{{$article->author->name}}</h3>
-                            <p>{{$article->author->description}}</p>
+                    <footer>
+                        <div class="mb-8 flex border-t-2 border-slate pt-8">
+                            @if($article->author->image)
+                                <img class="h-32 w-32  rounded-full mr-8"
+                                     src="{{Storage::url($article->author->image->path)}}"
+                                     alt="{{$article->author->image->alt}}"/>
+                            @endif
+                            <div class="self-center">
+                                <h3>{{$article->author->name}}</h3>
+                                <p>{{$article->author->description}}</p>
+                            </div>
                         </div>
+                        <div class="mb-8 border-t-2 border-slate pt-8">
+                            @forelse($article->comments as $comment)
+                                <div class="mb-4">
+                                    <p class="mb-2">{{$comment->name}}
+                                        on {{$comment->created_at->formatLocalized('%B %d,  %Y')}}</p>
+                                    <p>{{$comment->content}}</p>
+                                </div>
+                            @empty
+                                <p class="text-center">Write the first comment!</p>
+                            @endforelse
+                        </div>
+                        <div class="mb-8 border-t-2 border-slate pt-8">
+                            <form method="post" action="{{route('articles.comments.store', $article->slug)}}">
+                                {{csrf_field()}}
+                                <div class="mb-2">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="field" name="name" id="name"/>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="content">Content</label>
+                                    <textarea class="field" name="content" id="content">
+                                    </textarea>
+                                </div>
+                                <div class="mb-2">
+                                    <button type="submit" class="btn">Save</button>
+                                </div>
+                            </form>
+                        </div>
+
                     </footer>
 
                 </article>

@@ -46,7 +46,7 @@
             },
             messages: {
                 type: Array,
-                default: []
+                default: () => []
             }
         },
 
