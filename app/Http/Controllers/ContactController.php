@@ -33,8 +33,6 @@ class ContactController extends Controller
 
         Mail::send(new ContactForm($data));
 
-        flash('Contact form successfully send')->success();
-
-        return redirect()->back();
+        return response()->json(['message' => 'Contact form successfully send']);
     }
 }

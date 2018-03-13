@@ -85,6 +85,7 @@ Vue.component('tags-input', require('./components/TagsInput.vue'));
 Vue.component('images-component', require('./components/ImagesComponent.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
 Vue.component('profile', require('./components/Profile.vue'));
+Vue.component('contact-form', require('./components/ContactForm.vue'));
 
 import ClickOutside from './directives/click-outside';
 
