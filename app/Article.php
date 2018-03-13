@@ -75,7 +75,7 @@ class Article extends Model implements Feedable
     }
 
     /**
-     * The Tags Relation the the article
+     * The Tags Relation the the article.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -83,9 +83,9 @@ class Article extends Model implements Feedable
     {
         return $this->belongsToMany(Tag::class);
     }
-    
+
     /**
-     * The Comments Relation of the article
+     * The Comments Relation of the article.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -113,7 +113,7 @@ class Article extends Model implements Feedable
     }
 
     /**
-     * The User relation of the article
+     * The User relation of the article.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -133,9 +133,9 @@ class Article extends Model implements Feedable
 
         return $matches[0].'...';
     }
-    
+
     /**
-     * removes all unwanted html tags and attributes from the content
+     * removes all unwanted html tags and attributes from the content.
      * @param $body
      * @return array|string
      */
@@ -143,9 +143,9 @@ class Article extends Model implements Feedable
     {
         return \Purify::clean($body);
     }
-    
+
     /**
-     * Calculates the reading time of the article
+     * Calculates the reading time of the article.
      *
      * @return float
      */

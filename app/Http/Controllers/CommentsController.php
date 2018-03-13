@@ -11,13 +11,13 @@ class CommentsController extends Controller
     {
         $commentData = $request->validate([
            'name' => 'required',
-           'content' => 'required'
+           'content' => 'required',
         ]);
 
         $article = Article::where('slug', $slug)->first();
-        
+
         $article->comments()->create($commentData);
-        
+
         return redirect($article->path());
     }
 }
