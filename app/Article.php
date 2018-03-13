@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed $image
  * @property bool $is_published
  * @property mixed published_at
+ * @property mixed $comments
  */
 class Article extends Model implements Feedable
 {
@@ -74,11 +75,23 @@ class Article extends Model implements Feedable
     }
 
     /**
+     * The Tags Relation the the article
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+    
+    /**
+     * The Comments Relation of the article
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
     /**
@@ -100,6 +113,8 @@ class Article extends Model implements Feedable
     }
 
     /**
+     * The User relation of the article
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function author()
@@ -118,15 +133,25 @@ class Article extends Model implements Feedable
 
         return $matches[0].'...';
     }
-
+    
+    /**
+     * removes all unwanted html tags and attributes from the content
+     * @param $body
+     * @return array|string
+     */
     public function getContentAttribute($body)
     {
         return \Purify::clean($body);
     }
-
+    
+    /**
+     * Calculates the reading time of the article
+     *
+     * @return float
+     */
     public function readingTime()
     {
-        return ceil(str_word_count($this->content) / 250);
+        return ceil(str_word_count($this->content) / config('blog.reading_time'));
     }
 
     /**

@@ -37,6 +37,7 @@ Route::post('/contact', 'ContactController@store')->name('contact.store');
 // Blog Routes
 Route::get('/blog', 'BlogController@index')->name('blog');
 Route::get('/blog/{slug}', 'BlogController@single')->name('articles.show');
+Route::post('/blog/{slug}/comments', 'CommentsController@store')->name('articles.comments.store');
 
 //Tag Routes
 Route::get('/tags', 'TagsController@index')->name('tags.index');
