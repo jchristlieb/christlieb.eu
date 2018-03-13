@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         });
 
         $articles->each(function ($article) use ($tags) {
-            factory(\App\Comment::class,rand(1,10))->create(['article_id' => $article->id]);
+            factory(\App\Comment::class, rand(1, 10))->create(['article_id' => $article->id]);
             $article->tags()->saveMany($tags->random(rand(1, 4)));
             $article->image()->associate(factory(\App\Image::class)->states('seedImages')->create());
             $article->save();
