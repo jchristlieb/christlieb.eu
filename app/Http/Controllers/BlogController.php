@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 
 /**
- * Class ArticlesController.
+ * Class BlogController.
  */
 class BlogController extends Controller
 {

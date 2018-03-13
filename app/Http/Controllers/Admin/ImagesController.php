@@ -6,8 +6,16 @@ use App\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+/**
+ * Class ImagesController
+ * @package App\Http\Controllers\Admin
+ */
 class ImagesController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
+     */
     public function index(Request $request)
     {
         $images = Image::latest()->get();
@@ -18,7 +26,11 @@ class ImagesController extends Controller
 
         return view('admin.images.index', compact('images'));
     }
-
+    
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(Request $request)
     {
         $uploadedFile = $request->file('image');

@@ -21,7 +21,11 @@ class ArticlesController extends Controller
 
         return view('admin.articles.index', compact('articles'));
     }
-
+    
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($id)
     {
         $article = Article::withDrafts()->with('tags', 'image')->find($id);
@@ -70,7 +74,11 @@ class ArticlesController extends Controller
 
         return redirect($article->path());
     }
-
+    
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit($id)
     {
         $article = Article::withDrafts()->with('image', 'tags')->findOrFail($id);

@@ -42,8 +42,8 @@
     @include('partials.header')
     <div class="container py-4 mx-auto">
 
-        <div class="flex -mx-2">
-            <aside class="p-3 w-1/4">
+        <div class="flex">
+            <aside class="p-3 w-1/4 mx-4">
                 <ul class="list-reset">
                     <li class="mb-6 flex">
                         <div class="mr-3 text-grey-dark">
@@ -81,9 +81,15 @@
                         </div>
                         <a class="text-grey-dark text-sm" href="{{route('admin.profile.show')}}">Profile</a>
                     </li>
+                    <li class="mb-6 flex">
+                        <div class="mr-3 text-grey-dark">
+                            @svg('solid.info', 'fill-current h-4 w-4')
+                        </div>
+                        <a class="text-grey-dark text-sm" href="{{route('admin.system')}}">System Infos</a>
+                    </li>
                 </ul>
             </aside>
-            <main class="py-8 w-3/4">
+            <main class="py-8 w-3/4 mx-4">
                 @yield('content')
             </main>
         </div>
