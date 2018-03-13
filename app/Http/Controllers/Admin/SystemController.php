@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 /**
- * Class SystemController
- * @package App\Http\Controllers\Admin
+ * Class SystemController.
  */
 class SystemController extends Controller
 {
@@ -34,8 +33,7 @@ class SystemController extends Controller
             'tokenizer' => (in_array('tokenizer', get_loaded_extensions()) ? 'Installed' : 'Not Installed'),
             'zip' => (in_array('zip', get_loaded_extensions()) ? 'Installed' : 'Not Installed'),
         ];
-        
-        
+
         return view('admin.system', compact('systemInfos'));
     }
 }

@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 /**
- * Class DashboardController
- * @package App\Http\Controllers\Admin
+ * Class DashboardController.
  */
 class DashboardController extends Controller
 {

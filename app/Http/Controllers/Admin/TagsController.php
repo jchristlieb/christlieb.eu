@@ -7,8 +7,7 @@ use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 
 /**
- * Class TagsController
- * @package App\Http\Controllers\Admin
+ * Class TagsController.
  */
 class TagsController extends Controller
 {
@@ -21,7 +20,7 @@ class TagsController extends Controller
 
         return view('admin.tags.index', compact('tags'));
     }
-    
+
     /**
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -32,7 +31,7 @@ class TagsController extends Controller
 
         return view('admin.tags.show', compact('tag'));
     }
-    
+
     /**
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
@@ -53,7 +52,7 @@ class TagsController extends Controller
 
         return view('admin.tags.show', compact('tag'));
     }
-    
+
     /**
      * @param $tagId
      * @param $articleId

@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 /**
- * Class ContactController
- * @package App\Http\Controllers
+ * Class ContactController.
  */
 class ContactController extends Controller
 {
@@ -19,7 +18,7 @@ class ContactController extends Controller
     {
         return view('contact');
     }
-    
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse

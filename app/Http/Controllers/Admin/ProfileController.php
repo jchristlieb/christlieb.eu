@@ -7,8 +7,7 @@ use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 
 /**
- * Class ProfileController
- * @package App\Http\Controllers\Admin
+ * Class ProfileController.
  */
 class ProfileController extends Controller
 {
@@ -19,7 +18,7 @@ class ProfileController extends Controller
     {
         return view('admin.profile.show');
     }
-    
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse

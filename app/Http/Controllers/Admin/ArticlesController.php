@@ -21,7 +21,7 @@ class ArticlesController extends Controller
 
         return view('admin.articles.index', compact('articles'));
     }
-    
+
     /**
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -74,7 +74,7 @@ class ArticlesController extends Controller
 
         return redirect($article->path());
     }
-    
+
     /**
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

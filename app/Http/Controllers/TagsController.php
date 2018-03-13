@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Tag;
 
 /**
- * Class TagsController
- * @package App\Http\Controllers
+ * Class TagsController.
  */
 class TagsController extends Controller
 {
@@ -17,7 +16,7 @@ class TagsController extends Controller
     {
         return response()->json(Tag::all());
     }
-    
+
     /**
      * @param $slug
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

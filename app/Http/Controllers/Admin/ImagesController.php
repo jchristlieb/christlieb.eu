@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 /**
- * Class ImagesController
- * @package App\Http\Controllers\Admin
+ * Class ImagesController.
  */
 class ImagesController extends Controller
 {
@@ -26,7 +25,7 @@ class ImagesController extends Controller
 
         return view('admin.images.index', compact('images'));
     }
-    
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
