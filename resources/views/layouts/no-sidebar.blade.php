@@ -9,24 +9,43 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'christlieb.eu') . ' | ' }}@yield('title', 'Home')</title>
 
+    <script>
+        WebFontConfig = {
+            google: {
+                families: ['Roboto', 'Roboto Condensed', 'Roboto Slab']
+            },
+            timeout: 2000 // Set the timeout to two seconds
+        };
+        (function (d) {
+            let wf = d.createElement('script'), s = d.scripts[0];
+            wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+            wf.async = true;
+            s.parentNode.insertBefore(wf, s);
+        })(document);
+    </script>
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @if(config('app.env') == 'production')
+        <style>
+            {{ file_get_contents(public_path('css/app.css')) }}
+        </style>
+    @else
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @endif
 </head>
-<body>
+<body class="font-sans">
 <div id="app">
     <flash></flash>
-    @include('partials.navbar')
-    <div class="container py-4">
-        <div class="row">
-            <main class="col-md-12">
-                @yield('content')
-            </main>
-        </div>
-    </div>
+    @include('partials.header')
+
+    @yield('content')
+
+    @include('partials.footer')
 </div>
 
 <!-- Scripts -->
-@include('partials.google-analytics')
+@if(!isset($_SERVER['HTTP_USER_AGENT']) || stripos($_SERVER['HTTP_USER_AGENT'], 'Speed Insights') === false)
+    @include('partials.google-analytics')
+@endif
 <script src="{{ asset('js/app.js') }}"></script>
 @include('flash::message')
 </body>

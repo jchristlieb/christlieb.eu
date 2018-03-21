@@ -1,0 +1,6 @@
+.pagination{
+    @apply .flex .list-reset .justify-center .py-8;
+    li{
+        @apply .p-4;
+    }
+}

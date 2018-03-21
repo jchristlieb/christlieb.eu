@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $user = factory(\App\User::class)->create([
+            'image_id' => 1,
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('password'),
@@ -27,18 +28,22 @@ class DatabaseSeeder extends Seeder
             $tags->push(factory(\App\Tag::class)->create([
                 'name' => $tag,
                 'slug' => $tag,
+                'image_id' => rand(1, 3),
             ]));
         });
 
-        // Create comments for each post
         $articles->each(function ($article) use ($tags) {
+            factory(\App\Comment::class, rand(1, 10))->create(['article_id' => $article->id]);
             $article->tags()->saveMany($tags->random(rand(1, 4)));
+            $article->image()->associate(factory(\App\Image::class)->states('seedImages')->create());
+            $article->save();
         });
         $this->command->info('Tags created');
 
-        // Create three posts with distinct promotion status
-        collect(['promoted_first', 'promoted_second', 'promoted_third'])->each(function ($state) {
-            factory(\App\Article::class)->states($state)->create();
+        collect([1, 2, 3])->each(function ($state) use ($articles) {
+            $articles->random()->update(['promoted' => $state]);
         });
+
+        $this->command->info('Promoted Articles created');
     }
 }

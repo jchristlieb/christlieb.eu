@@ -30,4 +30,12 @@ Route::patch('/tags/{id}', 'TagsController@update')->name('admin.tags.update');
 Route::delete('/tags/{tagId}/articles/{articleId}', 'TagsController@deleteArticleRelation')->name('admin.tags.article.delete');
 
 // Image Routes
+Route::get('/images', 'ImagesController@index')->name('admin.images.index');
 Route::post('/images', 'ImagesController@store')->name('admin.images.store');
+
+// Profile Routes
+Route::get('/profile', 'ProfileController@show')->name('admin.profile.show');
+Route::patch('/profile', 'ProfileController@update')->name('admin.images.update');
+
+// Info
+Route::get('/info', 'SystemController')->name('admin.system');

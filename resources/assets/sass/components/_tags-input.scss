@@ -1,26 +1,35 @@
-.tags-input{
-    padding: .25rem;
-    border-radius: .25rem;
-    display:flex;
-    border: 1px solid $gray-400;
-    align-items: center;
-    .badge{
-        display: inline-flex;
-        margin-right: .5rem;
-        span{
-            padding: .25rem;
-        }
-        a{
-            padding: 0 .25rem;
-            color: #fff;
-            &:hover{
-                text-decoration: none;
-            }
-        }
+.outline-0 {
+    outline: 0;
+}
+.tags-input {
+    @apply .flex .flex-wrap .bg-white .border .border-slate .rounded .pl-2 .pr-4 .pt-2 .pb-1;
+}
+
+.tags-input-tag {
+    @apply .inline-flex .leading-none .items-center .text-sm .bg-blue .text-white .rounded .select-none .p-1 .mr-2 .mb-1;
+
+    &:last-of-type {
+        @apply .mr-0;
     }
-    input{
-        flex: 1;
-        border: none;
-        outline: none !important;
+}
+
+.tags-input-remove {
+    @apply .text-blue-dark .text-lg .leading-none;
+
+    &:first-child {
+        @apply .mr-1;
     }
+
+    &:last-child {
+        @apply .ml-1;
+    }
+
+    &:focus {
+        @apply .outline-0;
+    }
+}
+
+.tags-input-text {
+    @apply .flex-1 .outline-0 .py-1 .ml-2 .mb-1;
+    min-width: 10rem;
 }

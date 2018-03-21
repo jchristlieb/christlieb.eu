@@ -7,6 +7,7 @@ use App\Article;
 
 use App\Article;
 
+use App\Tag;
 use App\Article;
 
 /**
@@ -21,9 +22,11 @@ class IndexController extends Controller
      */
     public function __invoke()
     {
-        $promotedArticles = Article::whereNotNull('promoted')->with('author', 'tags')->get();
+        $tags = Tag::withCount('articles')->with('image')->orderBy('articles_count', 'desc')->limit(2)->get();
 
-        return view('index', compact('promotedArticles'));
+        $promotedArticles = Article::whereNotNull('promoted')->with('author', 'tags', 'image')->get();
+
+        return view('index', compact('promotedArticles', 'tags'));
     }
 
 }

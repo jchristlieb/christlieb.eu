@@ -10,43 +10,96 @@
 
     <title>{{ config('app.name', 'christlieb.eu') . ' Admin | ' }}@yield('title', 'Dashboard')</title>
 
+    <script>
+        WebFontConfig = {
+            google: {
+                families: ['Roboto', 'Roboto Condensed', 'Roboto Slab']
+            },
+            timeout: 2000 // Set the timeout to two seconds
+        };
+        (function (d) {
+            let wf = d.createElement('script'), s = d.scripts[0];
+            wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+            wf.async = true;
+            s.parentNode.insertBefore(wf, s);
+        })(document);
+    </script>
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @if(config('app.env') == 'production')
+        <style>
+            {{ file_get_contents(public_path('css/app.css')) }}
+        </style>
+    @else
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @endif
 </head>
-<body>
+
+<body class="font-sans">
 <div id="app">
-    <flash></flash>
-    @include('partials.navbar')
-    <div class="container py-4">
-        <div class="row">
-            <aside class="col-md-3">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <i class="fal fa-newspaper fa-lg"></i> Blog
+    {{--<flash></flash>--}}
+    @include('flash::message')
+
+    @include('partials.header')
+    <div class="container py-4 mx-auto">
+
+        <div class="flex">
+            <aside class="p-3 w-1/4 mx-4">
+                <ul class="list-reset">
+                    <li class="mb-6 flex">
+                        <div class="mr-3 text-grey-dark">
+                            @svg('solid.cogs', 'fill-current h-4 w-4')
+                        </div>
+                        <a class="text-grey-dark text-sm" href="{{route('admin.dashboard')}}">Dashboard</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.dashboard')}}">Dashboard</a>
+                    <li class="mb-6 flex">
+                        <div class="mr-3 text-grey-dark">
+                            @svg('solid.pencil-alt', 'fill-current h-4 w-4')
+                        </div>
+                        <a class="text-grey-dark text-sm" href="{{route('admin.articles.create')}}">New Article</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.articles.create')}}">New Article</a>
+                    <li class="mb-6 flex">
+                        <div class="mr-3 text-grey-dark">
+                            @svg('solid.newspaper', 'fill-current h-4 w-4')
+                        </div>
+                        <a class="text-grey-dark text-sm" href="{{route('admin.articles.index')}}">Articles</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.articles.index')}}">Articles</a>
+                    <li class="mb-6 flex">
+                        <div class="mr-3 text-grey-dark">
+                            @svg('solid.tags', 'fill-current h-4 w-4')
+                        </div>
+                        <a class="text-grey-dark text-sm" href="{{route('admin.tags.index')}}">Tags</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.tags.index')}}">Tags</a>
+                    <li class="mb-6 flex">
+                        <div class="mr-3 text-grey-dark">
+                            @svg('solid.images', 'fill-current h-4 w-4')
+                        </div>
+                        <a class="text-grey-dark text-sm" href="{{route('admin.images.index')}}">Images</a>
+                    </li>
+                    <li class="mb-6 flex">
+                        <div class="mr-3 text-grey-dark">
+                            @svg('solid.user-circle', 'fill-current h-4 w-4')
+                        </div>
+                        <a class="text-grey-dark text-sm" href="{{route('admin.profile.show')}}">Profile</a>
+                    </li>
+                    <li class="mb-6 flex">
+                        <div class="mr-3 text-grey-dark">
+                            @svg('solid.info', 'fill-current h-4 w-4')
+                        </div>
+                        <a class="text-grey-dark text-sm" href="{{route('admin.system')}}">System Infos</a>
                     </li>
                 </ul>
             </aside>
-            <main class="col-md-9">
+            <main class="py-8 w-3/4 mx-4">
                 @yield('content')
             </main>
         </div>
     </div>
+    @include('partials.footer')
 </div>
+
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
-@include('flash::message')
+@yield('javascript')
 </body>
 </html>

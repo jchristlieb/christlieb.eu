@@ -12,11 +12,32 @@
 */
 
 // Front page
-Route::get('/', 'IndexController');
+Route::get('/', 'IndexController')->name('index');
+
+// Static Pages
+Route::get('/about-us', function () {
+    return view('about-us');
+})->name('about-us');
+
+Route::get('/legal-notice', function () {
+    return view('legal-notice');
+})->name('legal-notice');
+
+Route::get('/privacy', function () {
+    return view('privacy');
+})->name('privacy');
+
+// RSS Routes
+Route::feeds();
+
+// Contact Page
+Route::get('/contact', 'ContactController@show')->name('contact');
+Route::post('/contact', 'ContactController@store')->name('contact.store');
 
 // Blog Routes
 Route::get('/blog', 'BlogController@index')->name('blog');
 Route::get('/blog/{slug}', 'BlogController@single')->name('articles.show');
+Route::post('/blog/{slug}/comments', 'CommentsController@store')->name('articles.comments.store');
 
 //Tag Routes
 Route::get('/tags', 'TagsController@index')->name('tags.index');

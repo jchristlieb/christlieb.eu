@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Tag;
 use App\Article;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -18,14 +17,18 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles = Article::latest()->paginate(10);
+        $articles = Article::withDrafts()->latest()->paginate(10);
 
         return view('admin.articles.index', compact('articles'));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($id)
     {
-        $article = Article::with('tags')->find($id);
+        $article = Article::withDrafts()->with('tags', 'image')->find($id);
 
         return view('admin.articles.show', compact('article'));
     }
@@ -47,18 +50,21 @@ class ArticlesController extends Controller
         $data = $request->validate([
             'title' => ['required', Rule::unique('articles')],
             'content' => ['required'],
+            'published_at' => 'date|date_format:Y-m-d|after:today',
+            'image_id' => 'exists:images,id',
         ]);
         $article = new Article($data);
         $article->slug = str_slug($request->input('title'));
         $article->author()->associate(auth()->user());
+
+        if ($imageId = $request->input('image_id')) {
+            $article->image_id = $imageId;
+        }
         $article->save();
 
-        if ($request->input('tags')) {
-            foreach ($request->input('tags') as $tag) {
-                $tagModel = Tag::firstOrNew(['name' => $tag]);
-                $article->tags()->save($tagModel);
-            }
-        }
+        $tags = collect($request->input('tags', []))->pluck('name')->toArray();
+        /* @var $article Article */
+        $article->syncTags($tags);
 
         if ($request->wantsJson()) {
             return response()->json($article);
@@ -69,9 +75,15 @@ class ArticlesController extends Controller
         return redirect($article->path());
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit($id)
     {
-        $article = Article::findOrFail($id);
+        $article = Article::withDrafts()->with('image', 'tags')->findOrFail($id);
+
+        $article->tags = $article->tags->pluck('name');
 
         return view('admin.articles.edit', compact('article'));
     }
@@ -85,11 +97,19 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $article = Article::findOrFail($id);
+        $article = Article::withDrafts()->findOrFail($id);
         $article->update($request->validate([
             'title' => ['required', Rule::unique('articles')->ignore($article->id)],
             'content' => ['required'],
+            'image_id' => 'exists:images,id',
         ]));
+
+        $tags = collect($request->input('tags', []))->pluck('name')->toArray();
+        /* @var $article Article */
+        $article->syncTags($tags);
+        if ($request->wantsJson()) {
+            return response()->json($article);
+        }
 
         flash('Successfully updated Article')->success();
 

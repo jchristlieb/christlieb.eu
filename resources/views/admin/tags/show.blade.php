@@ -3,7 +3,6 @@
 @section('title',  'Tag: ' . $tag->name )
 
 @section('content')
-
     <update-tag data-tag="{{$tag->toJson()}}" url="{{route('admin.tags.update', $tag->id)}}"></update-tag>
 
     @foreach($tag->articles as $article)

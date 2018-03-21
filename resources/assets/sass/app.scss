@@ -1,19 +1,30 @@
 
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@tailwind preflight;
 
-// Variables
-@import "variables";
+[v-cloak] {
+    display: none;
+}
 
-// Vendors
-@import '~bootstrap/scss/bootstrap';
-@import "../fontawesome-5/scss/fontawesome";
-@import "../fontawesome-5/scss/fa-light";
+@tailwind utilities;
 
-// Components
-@import "components/navbar";
+a {
+    @apply .no-underline .text-blue;
+}
+
+// Utilities
+@import "utilities/animation";
+@import "utilities/web-fonts";
+//Components
+@import "components/button";
+@import "components/form";
+@import "components/pagination";
 @import "components/tags-input";
-@import "components/card";
+@import "components/table";
 
-//Widgets
-@import "widgets/tags";
+@import "~prismjs/themes/prism.css";
+
+
+
+
+
+

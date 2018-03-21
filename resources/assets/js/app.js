@@ -1,17 +1,17 @@
 window._ = require('lodash');
-window.Popper = require('popper.js').default;
-
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
-
-try {
-    window.$ = window.jQuery = require('jquery');
-
-    require('bootstrap');
-} catch (e) {}
+// window.Popper = require('popper.js').default;
+//
+// /**
+//  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
+//  * for JavaScript based Bootstrap features such as modals and tabs. This
+//  * code may be modified to fit the specific needs of your application.
+//  */
+//
+// try {
+//     window.$ = window.jQuery = require('jquery');
+//
+//     require('bootstrap');
+// } catch (e) {}
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -54,20 +54,20 @@ if (token) {
 // });
 
 window.Vue = require('vue');
-
-/**
- * Our Vuejs event handler which we will be using for flash messaging
- * @type  {Vue}
- */
-window.events = new Vue();
-
-/**
- * Our Flash function which will be used to add new flash events to our event handler
- *
- */
-window.flash = function(message, type) {
-    window.events.$emit('flash', message, type);
-};
+//
+// /**
+//  * Our Vuejs event handler which we will be using for flash messaging
+//  * @type  {Vue}
+//  */
+// window.events = new Vue();
+//
+// /**
+//  * Our Flash function which will be used to add new flash events to our event handler
+//  *
+//  */
+// window.flash = function (message, type) {
+//     window.events.$emit('flash', message, type);
+// };
 
 
 /**
@@ -76,13 +76,35 @@ window.flash = function(message, type) {
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('flash', require('vue-flash'));
+Vue.component('flash', require('./components/Flash.vue'));
 Vue.component('tags-widget', require('./components/TagsWidget.vue'));
 Vue.component('update-tag', require('./components/UpdateTagComponent.vue'));
-Vue.component('new-article-form', require('./components/NewArticleForm.vue'));
+Vue.component('article-form', require('./components/ArticleForm.vue'));
 Vue.component('tags-input', require('./components/TagsInput.vue'));
-Vue.component('wysiwyg', require('./components/Wysiwyg.vue'));
+// Vue.component('wysiwyg', require('./components/Wysiwyg.vue'));
+Vue.component('images-component', require('./components/ImagesComponent.vue'));
+Vue.component('modal', require('./components/Modal.vue'));
+Vue.component('profile', require('./components/Profile.vue'));
+Vue.component('contact-form', require('./components/ContactForm.vue'));
+
+import ClickOutside from './directives/click-outside';
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data() {
+        return {
+            menuOpen: false,
+            accountOpen: false,
+        }
+    },
+    directives: {
+        ClickOutside
+    },
+    methods: {
+        onClickOutside() {
+            if (this.accountOpen) {
+                this.accountOpen = false;
+            }
+        }
+    }
 });

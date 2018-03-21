@@ -6,8 +6,14 @@ use App\Tag;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 
+/**
+ * Class TagsController.
+ */
 class TagsController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $tags = Tag::withCount('articles')->paginate(10);
@@ -15,18 +21,27 @@ class TagsController extends Controller
         return view('admin.tags.index', compact('tags'));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($id)
     {
-        $tag = Tag::with('articles')->find($id);
+        $tag = Tag::with('articles', 'image')->find($id);
 
         return view('admin.tags.show', compact('tag'));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
+     */
     public function update($id)
     {
-        $tag = Tag::findOrFail($id);
+        $tag = Tag::with('image')->findOrFail($id);
         $tag->update(request()->validate([
             'name' => ['required', Rule::unique('tags')->ignore($tag->id)],
+            'image_id' => 'exists:images,id',
         ]));
 
         flash('Successfully updated Tag')->success();
@@ -38,6 +53,11 @@ class TagsController extends Controller
         return view('admin.tags.show', compact('tag'));
     }
 
+    /**
+     * @param $tagId
+     * @param $articleId
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function deleteArticleRelation($tagId, $articleId)
     {
         /** @var $tag Tag */

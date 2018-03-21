@@ -1,31 +1,53 @@
-@extends('layouts.app')
+@extends('layouts.no-sidebar')
 
 @section('title',  'Tag: ' . $tag->name)
+
 @section('content')
+    <div class="container py-4 mx-auto">
 
-    <h1>{{$tag->name}}</h1>
-
-    @foreach($tag->articles as $article)
-        <article class="card mb-5">
-            <div class="card-header">
-                <h3><a href="{{$article->path()}}">{{$article->title}}</a></h3>
-                @if($article->updated_at != $article->created_at)
-                    <p>updated at: {{$article->created_at}}</p>
-                @endif
-                <p>by {{$article->author->name}} on {{$article->created_at}} in
-                    @foreach($article->tags as $tag)
-                        <a href="{{route('tags.show', $tag->slug)}}"><span class="badge badge-primary">{{$tag->name}}</span></a>
-                    @endforeach
-                </p>
-            </div>
-            <div class="card-body">
-                {{($article->getExcerpt())}}
-            </div>
-        </article>
-    @endforeach
-
-@endsection
-
-@section('sidebar')
-    @widget('LatestArticleWidget')
+        <div class="flex -mx-2">
+            <main class="p-3 w-2/3 mx-auto">
+                <h1 class="font-condensed font-bold text-grey-dark text-5xl mb-4">Tag: {{$tag->name}}</h1>
+                @foreach($tag->articles as $article)
+                    <article>
+                        <header class="mb-4">
+                            <div class="flex justify-between mb-6">
+                                <div class="text-grey">{{$article->published_at->formatLocalized('%B %d,  %Y')}}</div>
+                                <div class="flex text-grey">
+                                    <div class="pr-1">
+                                        @svg('regular.clock', 'fill-current h-4 w-4')
+                                    </div>
+                                    <div class="font-bold tracking-wide text-grey uppercase">
+                                        {{$article->readingTime() }} min read&nbsp;&nbsp;|&nbsp;&nbsp;
+                                    </div>
+                                    <div class="text-blue flex">
+                                        <div class="pr-1">
+                                            @svg('regular.comment','fill-current h-4 w-4')
+                                        </div>
+                                        <div class="font-bold tracking-wide uppercase">
+                                            <a href="#">2 comments</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2 class="font-condensed font-bold text-4xl mb-4"><a class="text-grey-dark" href="{{$article->path()}}">{{$article->title}}</a> </h2>
+                            <div class="mb-4 pb-6 border-b-2 border-slate">
+                                @foreach($article->tags as $tag)
+                                    <a href="{{route('tags.show', $tag->slug)}}">
+                                        <span class="text-sm text-white bg-grey py-1 px-2 mr-2">{{$tag->name}}</span>
+                                    </a>
+                                @endforeach
+                            </div>
+                            <div class="py-4 text-xl leading-normal font-serif">
+                                {{$article->getExcerpt(30)}}
+                            </div>
+                            @if($article->image)
+                                <img src="{{Storage::url($article->image->path)}}" class="w-full"/>
+                            @endif
+                        </header>
+                    </article>
+                @endforeach
+            </main>
+        </div>
+    </div>
 @endsection

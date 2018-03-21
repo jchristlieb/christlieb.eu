@@ -11,17 +11,6 @@ class UpdateArticlesTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function the_edit_articles_page_contains_the_right_article()
-    {
-        $this->signIn();
-        $article = factory(Article::class)->create();
-
-        $response = $this->get('/admin/articles/edit/1');
-
-        $this->assertEquals($article->fresh(), $response->original->getData()['article']);
-    }
-
-    /** @test */
     public function a_user_can_update_articles()
     {
         $this->signIn();

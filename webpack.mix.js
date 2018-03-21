@@ -1,5 +1,6 @@
 let mix = require('laravel-mix');
-
+let tailwindcss = require('tailwindcss');
+require('laravel-mix-purgecss');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -10,9 +11,20 @@ let mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+mix.webpackConfig({
+    output: {
+        publicPath: '/',
+        chunkFilename: 'js/[name].[chunkhash].js',
+    },
+});
 
 mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/app.scss', 'public/css')
+    .options({
+        processCssUrls: false,
+        postCss: [tailwindcss('./tailwind.js')],
+    })
+    .purgeCss()
     .copy('resources/assets/images', 'public/images')
     .browserSync({
         proxy: 'localhost:8000'
